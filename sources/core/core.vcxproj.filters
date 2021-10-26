@@ -18,6 +18,9 @@
     <ClCompile Include="entry\dllmain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="game\manager\manager.h">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="memory\accessor.h">
@@ -26,10 +29,16 @@
     <ClInclude Include="memory\member.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="replica\manager.h">
+    <ClInclude Include="game\manager\manager.cpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="replica\game_object.h">
+    <ClInclude Include="game\game_objects\game_object.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="game\manager\manager_iterator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="exports.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

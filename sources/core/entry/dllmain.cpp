@@ -1,8 +1,12 @@
 #include <process.h>
-#include <core/game/manager.h>
+#include <core/game/manager/manager.h>
+
+
+using namespace game;
 
 int main()
 {
+	auto t = game::ManagerTemplateProvider::GetAIHeroManager();
 
 	return 0;
 }

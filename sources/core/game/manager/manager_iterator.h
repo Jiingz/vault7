@@ -1,25 +1,18 @@
 #pragma once
 
-#include <core/memory/accessor.h>
-#include <core/memory/member.h>
-
-#include <core/game/game_object.h>
-
-#include <windows.h>
 
 #include <iterator>
 #include <array>
 #include <string>
 
-namespace game {
-
-
+namespace game
+{
+	//Replica of Leagues ManagerTemplate
 	struct ManagerTemplate
 	{
 		memory::AlignedMember<UINT32, 4, 0>     object_array;
 		memory::AlignedMember<UINT32, 0, 48>    size;
 	};
-
 
 	template <typename TType>
 	class ManagerTemplateIterator {
@@ -96,56 +89,4 @@ namespace game {
 		ManagerTemplate* ptr_;
 		SIZE_T index_;
 	};
-
-
-	class ManagerTemplateAccessor
-	{
-	public:
-		ManagerTemplateAccessor(ManagerTemplate* manager)
-			: manager_(manager) { }
-
-		ManagerTemplateIterator<GameObject> Begin() {
-			return this->begin();
-		}
-
-		ManagerTemplateIterator<GameObject> End() {
-			return this->end();
-		}
-
-	private:
-		ManagerTemplateIterator<GameObject> begin() {
-			return ManagerTemplateIterator<GameObject>(manager_, 0);
-		}
-
-		ManagerTemplateIterator<GameObject> end() {
-			return ManagerTemplateIterator<GameObject>(manager_, manager_->size.value);
-		}
-
-	private:
-		ManagerTemplate* manager_;
-	};
-
-
-	class ManagerTemplateProvider
-	{
-	public:
-		FORCEINLINE static ManagerTemplateAccessor GetAIHeroManager() {
-			// auto manager = reinterpret_cast<ManagerTemplate*>(*reinterpret_cast<DWORD*>(reinterpret_cast<DWORD>(GetModuleHandle(NULL)) + Offsets::ManagerTemplate::AIHeroClient));
-
-			auto manager = memory::Accessor::AccessModuleAddress<ManagerTemplate*, 0x1859FAC>();
-			return ManagerTemplateAccessor(manager);
-		}
-
-		FORCEINLINE static ManagerTemplateAccessor GetAIMinionManager() {
-			auto manager = memory::Accessor::AccessModuleAddress<ManagerTemplate* /* TODO Offset */>();
-			return ManagerTemplateAccessor(manager);
-		}
-
-		FORCEINLINE static ManagerTemplateAccessor GetAITurretClient() {
-			auto manager = memory::Accessor::AccessModuleAddress<ManagerTemplate* /* TODO Offset */>();
-			return ManagerTemplateAccessor(manager);
-		}
-	};
-
 }
-

@@ -20,12 +20,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="entry\dllmain.cpp" />
+    <ClCompile Include="game\manager\manager.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="exports.h" />
+    <ClInclude Include="game\manager\manager_iterator.h" />
     <ClInclude Include="memory\accessor.h" />
     <ClInclude Include="memory\member.h" />
-    <ClInclude Include="replica\game_object.h" />
-    <ClInclude Include="replica\manager.h" />
+    <ClInclude Include="game\game_objects\game_object.h" />
+    <ClInclude Include="game\manager\manager.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
