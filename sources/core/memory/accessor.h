@@ -21,7 +21,8 @@ protected:
 
     template <DWORD_PTR TOffset, typename TThis = DWORD_PTR>
     char* AccessStr() {
-        return utilities::GetStr(reinterpret_cast<TThis>(this + TOffset));
+        return "";
+       // return utilities::GetStr(reinterpret_cast<TThis>(this + TOffset));
     }
 
     typedef memory::Accessor Super;
