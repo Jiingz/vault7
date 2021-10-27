@@ -15,31 +15,28 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="entry\dllmain.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="game\manager\manager.h">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
+    <ClInclude Include="game\game_objects\game_object.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="game\manager\manager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="game\manager\manager_iterator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="memory\accessor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="memory\member.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="game\manager\manager.cpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\game_objects\game_object.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\manager\manager_iterator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="exports.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="game\manager\manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="entry\dllmain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

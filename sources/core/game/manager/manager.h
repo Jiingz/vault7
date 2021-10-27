@@ -1,5 +1,5 @@
 #pragma once 
-#include <core/exports.h>
+
 #include <core/memory/accessor.h>
 #include <core/memory/member.h>
 #include <core/game/manager/manager_iterator.h>
@@ -8,7 +8,7 @@
 namespace game
 {
 
-	class VAULT7_CORE_DLL ManagerTemplateAccessor
+	class ManagerTemplateAccessor
 	{
 	public:
 		ManagerTemplateAccessor(ManagerTemplate* manager);
@@ -31,11 +31,11 @@ namespace game
 	class ManagerTemplateProvider
 	{
 	public:
-		static ManagerTemplateAccessor VAULT7_CORE_DLL GetAIHeroManager();
+		static ManagerTemplateAccessor GetAIHeroManager();
 
 		//FORCEINLINE static ManagerTemplateAccessor GetAIMinionManager();
 
-		//FORCEINLINE static ManagerTemplateAccessor GetAITurretClient();
+		// FORCEINLINE static ManagerTemplateAccessor GetAITurretClient();
 	};
 
 

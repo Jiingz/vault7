@@ -18,22 +18,10 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="entry\dllmain.cpp" />
-    <ClCompile Include="game\manager\manager.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="exports.h" />
-    <ClInclude Include="game\manager\manager_iterator.h" />
-    <ClInclude Include="memory\accessor.h" />
-    <ClInclude Include="memory\member.h" />
-    <ClInclude Include="game\game_objects\game_object.h" />
-    <ClInclude Include="game\manager\manager.cpp" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{bd7d35b5-9f2c-49ce-820d-c37286cddba7}</ProjectGuid>
+    <ProjectGuid>{b589d49e-3679-40aa-a0ac-9340ed48efa6}</ProjectGuid>
     <RootNamespace>core</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -84,19 +72,21 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <TargetName>vault7-$(ProjectName)</TargetName>
-    <IntDir>$(SolutionDir)dump\$(ProjectName)\$(Configuration)\</IntDir>
+    <TargetName>$(SolutionName)-core</TargetName>
+    <IntDir>$(SolutionDir)obj\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IntDir>$(SolutionDir)dump\$(ProjectName)\$(Configuration)\</IntDir>
-    <TargetName>vault7-$(ProjectName)</TargetName>
+    <TargetName>$(SolutionName)-core</TargetName>
+    <IntDir>$(SolutionDir)obj\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <TargetName>core</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <TargetName>core</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -160,6 +150,17 @@
       <EnableUAC>false</EnableUAC>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="game\game_objects\game_object.h" />
+    <ClInclude Include="game\manager\manager.h" />
+    <ClInclude Include="game\manager\manager_iterator.h" />
+    <ClInclude Include="memory\accessor.h" />
+    <ClInclude Include="memory\member.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="entry\dllmain.cpp" />
+    <ClCompile Include="game\manager\manager.cpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
