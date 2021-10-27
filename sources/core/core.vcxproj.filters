@@ -30,12 +30,27 @@
     <ClInclude Include="memory\member.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="event\event_bus.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="event\events.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="locator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="utilities.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="game\manager\manager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="entry\dllmain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="locator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,12 +1,22 @@
 #include <process.h>
+
 #include <core/game/manager/manager.h>
+#include <core/event/events.h>
+#include <core/locator.h>
 
+// void HandleBasicAttack(event::BasicAttacEvent e) {
+// }
 
-using namespace game;
 
 int main()
 {
-	auto t = game::ManagerTemplateProvider::GetAIHeroManager();
+	core::Locator::Initialize();
+	
+	// NOTE
+	// Registering events like or you can directly save the aggregator 
+	// core::Locator::GetEventBus()->Subscribe<event::BasicAttacEvent>(HandleBasicAttack);
+
+	core::Locator::Finalize();
 
 	return 0;
 }

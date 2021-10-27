@@ -31,5 +31,3 @@ ManagerTemplateAccessor ManagerTemplateProvider::GetAIHeroManager() {
 	auto manager = memory::Accessor::AccessModuleAddress<ManagerTemplate*, 0x1859FAC>();
 	return ManagerTemplateAccessor(manager);
 }
-
-

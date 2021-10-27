@@ -95,6 +95,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;CORE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)sources</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -111,6 +112,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;CORE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)sources</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -151,6 +153,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="event\events.h" />
+    <ClInclude Include="event\event_bus.h" />
+    <ClInclude Include="utilities.h" />
+    <ClInclude Include="locator.h" />
     <ClInclude Include="game\game_objects\game_object.h" />
     <ClInclude Include="game\manager\manager.h" />
     <ClInclude Include="game\manager\manager_iterator.h" />
@@ -159,6 +165,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="entry\dllmain.cpp" />
+    <ClCompile Include="locator.cpp" />
     <ClCompile Include="game\manager\manager.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
