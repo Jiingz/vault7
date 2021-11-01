@@ -17,6 +17,11 @@ Application::Application()
 
 Application::~Application()
 {
+    ImGui_ImplSDL2_Shutdown();
+    ImGui_ImplOpenGL3_Shutdown();
+
+    SDL_GL_DeleteContext(context_);
+
     SDL_DestroyWindow(window_);
     SDL_Quit();
 
@@ -82,20 +87,9 @@ void Application::Render()
     ImGui_ImplSDL2_NewFrame(window_);
     ImGui::NewFrame();
 
-    // ImGui::ShowDemoWindow();
+    ImGui::ShowDemoWindow();
 
-    if (ImGui::BeginMainMenuBar())
-    {
-        if (ImGui::BeginMenu("Modules"))
-        {
-            ImGui::MenuItem("Load modules");
-
-            ImGui::EndMenu();
-        }
-
-
-        ImGui::EndMainMenuBar();
-    }
+    app_view_.Render();
 
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
@@ -107,6 +101,7 @@ void Application::Render()
 void Application::Initialize()
 {
     // TODO We need error checks
+    CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
 
     // Initialize SDL, OpenGL and ImGui
     SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS | SDL_INIT_TIMER);

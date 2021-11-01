@@ -5,6 +5,8 @@
 #include <sdl.h>
 #include <imgui.h>
 
+#include <loader/views/app_view.h>
+
 
 namespace loader
 {
@@ -25,6 +27,8 @@ namespace loader
     private:
         SDL_Window* window_;
         SDL_GLContext context_;
+
+        views::AppView app_view_;
 
         bool is_closed_;
     };
