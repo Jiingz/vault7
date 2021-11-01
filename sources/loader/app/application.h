@@ -24,7 +24,7 @@ namespace loader
 
     private:
         SDL_Window* window_;
-        SDL_Renderer* renderer_;
+        SDL_GLContext context_;
 
         bool is_closed_;
     };
