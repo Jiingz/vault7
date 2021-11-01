@@ -15,14 +15,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="champion.h">
+    <ClInclude Include="module\module.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="definition.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="module.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="module\module.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

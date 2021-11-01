@@ -4,17 +4,10 @@
 #include <core/event/events.h>
 #include <core/locator.h>
 
-// void HandleBasicAttack(event::BasicAttacEvent e) {
-// }
-
 
 int main()
 {
 	core::Locator::Initialize();
-	
-	// NOTE
-	// Registering events like or you can directly save the aggregator 
-	// core::Locator::GetEventBus()->Subscribe<event::BasicAttacEvent>(HandleBasicAttack);
 
 	core::Locator::Finalize();
 
