@@ -24,4 +24,3 @@ namespace sandbox
 
 
 extern "C" SANDBOX_DLL sdk::ModuleBase* ResolveModule();
-

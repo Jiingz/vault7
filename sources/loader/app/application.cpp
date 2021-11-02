@@ -87,9 +87,26 @@ void Application::Render()
     ImGui_ImplSDL2_NewFrame(window_);
     ImGui::NewFrame();
 
-    ImGui::ShowDemoWindow();
+    {
+        ImGui::SetNextWindowPos( ImVec2(0,0) );
+        ImGui::SetNextWindowSize(ImVec2(800, 600));
 
-    app_view_.Render();
+        ImGui::Begin("MainWindow", 0,
+                     ImGuiWindowFlags_NoResize |
+                     ImGuiWindowFlags_NoMove |
+                     ImGuiWindowFlags_NoCollapse |
+                     ImGuiWindowFlags_NoSavedSettings |
+                     ImGuiWindowFlags_NoTitleBar |
+                     ImGuiWindowFlags_NoScrollbar |
+                     ImGuiWindowFlags_NoScrollWithMouse |
+                     ImGuiWindowFlags_NoBringToFrontOnFocus);
+
+        app_view_.Render();
+
+        ImGui::ShowDemoWindow();
+
+        ImGui::End();
+    }
 
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
@@ -114,9 +131,8 @@ void Application::Initialize()
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 2);
 
-    window_ = SDL_CreateWindow("Vault7", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI | SDL_WINDOW_OPENGL);
-
-
+    window_ = SDL_CreateWindow("Vault7", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, SDL_WINDOW_ALLOW_HIGHDPI | SDL_WINDOW_OPENGL);
+    
     context_ = SDL_GL_CreateContext(window_);
     SDL_GL_MakeCurrent(window_, context_);
     
@@ -129,6 +145,9 @@ void Application::Initialize()
     ImGui_ImplSDL2_InitForOpenGL(window_, context_);
     ImGui_ImplOpenGL3_Init("#version 130");
 
+    auto& style = ImGui::GetStyle();
+    style.ChildRounding = 5.0f;
+    style.FrameRounding = 5.0f;
 
     ImGuiIO& io = ImGui::GetIO();
     io.Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\Candara.ttf", 13.0f);

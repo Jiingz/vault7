@@ -1,6 +1,6 @@
 #pragma once
 
-#include <sdk/definition.h>
+#include <sdk/metadata.h>
 
 
 namespace sdk
@@ -10,19 +10,19 @@ namespace sdk
     public:
         ModuleBase(std::string_view name, std::string_view version, std::string_view author)
         {
-            definition_.name = name;
-            definition_.version = version;
-            definition_.author = author;
+            info_.name = name;
+            info_.version = version;
+            info_.author = author;
         }
 
-        const ModuleExportDefintion& GetExportDefinition() const {
-            return definition_;
+        const ModuleExportInfo& GetExportInfo() const {
+            return info_;
         }
 
         virtual void GetChampionDefinitions() = 0;
 
     private:
-        ModuleExportDefintion definition_;
+        ModuleExportInfo info_;
     };
 
 

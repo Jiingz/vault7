@@ -20,7 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="champion.h" />
-    <ClInclude Include="definition.h" />
+    <ClInclude Include="metadata.h" />
     <ClInclude Include="module.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

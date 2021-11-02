@@ -1,4 +1,5 @@
 #include <loader/views/app_view.h>
+#include <loader/app/module_loader.h>
 
 #include <wrl/client.h>
 
@@ -6,20 +7,56 @@
 
 #include <filesystem>
 #include <iostream>
-#include <vector>
 
 
 using namespace Microsoft::WRL;
 using namespace loader::views;
+using namespace loader;
+
+
+AppView::AppView()
+    : modules_loaded_(false)
+{
+}
 
 
 void AppView::Render()
 {
+    {
+        ImGui::BeginChild("Left", ImVec2(390.0f, 500.0f), true, ImGuiWindowFlags_AlwaysAutoResize);
+        ImGui::Text("Something");
+        ImGui::EndChild();
+    }
+
+    ImGui::SameLine(0.0f, 5.0f);
+
+    {
+        ImGui::BeginChild("Right", ImVec2(390.0f, 500.0f), true, ImGuiWindowFlags_AlwaysAutoResize);
+
+        ImGui::Text("Something");
+        ImGui::EndChild();
+    }
+
+    const ImVec2 region = ImGui::GetContentRegionMax();
+    ImGui::SetCursorPosY(region.y - 50.0f);
+
+    if (ImGui::Button("Inject", ImVec2(-1.0f, 35.0f)))
+    {
+    }
+
+    /*
     if (ImGui::BeginMainMenuBar())
     {
         if (ImGui::BeginMenu("Modules"))
         {
-            if (ImGui::MenuItem("Load")) this->LoadModules();
+            if (ImGui::MenuItem("Load"))
+            {
+                this->LoadModules();
+
+                // Set the flag that we loaded new modules.
+                modules_loaded_ = !loaded_module_information_.empty();
+            }
+
             if (ImGui::MenuItem("Remove all")) { }
 
             ImGui::EndMenu();
@@ -27,6 +64,31 @@ void AppView::Render()
 
         ImGui::EndMainMenuBar();
     }
+
+    // Open popup window to select modules.
+    if (modules_loaded_)
+    {
+        ImGui::OpenPopup("ModuleSelectionPopup");
+        modules_loaded_ = false;
+    }
+
+    // Module selection popup
+    if (ImGui::BeginPopupModal("ModuleSelectionPopup", 0, ImGuiWindowFlags_AlwaysAutoResize))
+    {
+        for (const auto& info : loaded_module_information_)
+        {
+            ImGui::Text(info.name.c_str());
+        }
+
+        if (ImGui::Button("Close"))
+        {
+            loaded_module_information_.clear();
+            ImGui::CloseCurrentPopup();
+        }
+
+        ImGui::EndPopup();
+    }
+    */
 }
 
 
@@ -77,11 +139,19 @@ void AppView::LoadModules()
                         WCHAR m[] = TEXT("modules");
 
                         std::filesystem::path path = module_display_name;
-                        std::filesystem::path target_file = target_dir / path.filename();
 
-                        std::wcout << TEXT("copying ") << path.c_str() << target_file.c_str() << "\n";
+                        auto module = ModuleLoader().LoadModule(path.wstring());
+                        
+                        if (!module)
+                        {
+                            continue;
+                        }
 
-                        CopyFile(path.c_str(), target_file.c_str(), FALSE);
+                        loaded_module_information_.push_back(module->GetExportInfo());
+
+                        // std::filesystem::path target_file = target_dir / path.filename();
+                        // 
+                        // CopyFile(path.c_str(), target_file.c_str(), FALSE);
 
                         if (SUCCEEDED(result))
                         {

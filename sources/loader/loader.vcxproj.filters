@@ -48,6 +48,9 @@
     <ClCompile Include="views\app_view.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="app\module_loader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
@@ -87,6 +90,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="views\app_view.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="app\module_loader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

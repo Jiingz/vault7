@@ -5,11 +5,11 @@
 
 namespace sdk
 {
-    struct ChampionDefinition
+    struct ChampionInfo
     {
     };
 
-    struct ModuleExportDefintion
+    struct ModuleExportInfo
     {
         std::string name;
         std::string author;

@@ -156,6 +156,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="app\application.cpp" />
+    <ClCompile Include="app\module_loader.cpp" />
     <ClCompile Include="entry\main.cpp" />
     <ClCompile Include="glad\glad.c" />
     <ClCompile Include="imgui\imgui.cpp" />
@@ -169,6 +170,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="app\application.h" />
+    <ClInclude Include="app\module_loader.h" />
     <ClInclude Include="glad\glad.h" />
     <ClInclude Include="imgui\imgui_impl_opengl3.h" />
     <ClInclude Include="imgui\imgui_impl_opengl3_loader.h" />
