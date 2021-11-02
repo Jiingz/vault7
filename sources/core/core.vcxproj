@@ -111,7 +111,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;CORE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)sources</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)sources;$(SolutionDir)sources\core\game\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -155,6 +155,9 @@
   <ItemGroup>
     <ClInclude Include="event\events.h" />
     <ClInclude Include="event\event_bus.h" />
+    <ClInclude Include="game\game_objects\hero\hero.h" />
+    <ClInclude Include="game\game_objects\minion\minion.h" />
+    <ClInclude Include="game\game_objects\turret\turret.h" />
     <ClInclude Include="utilities.h" />
     <ClInclude Include="locator.h" />
     <ClInclude Include="game\game_objects\game_object.h" />
@@ -165,8 +168,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="entry\dllmain.cpp" />
+    <ClCompile Include="game\game_objects\game_object.cpp" />
+    <ClCompile Include="game\game_objects\hero\hero.cpp" />
+    <ClCompile Include="game\game_objects\minion\minion.cpp" />
     <ClCompile Include="locator.cpp" />
     <ClCompile Include="game\manager\manager.cpp" />
+    <ClCompile Include="game\game_objects\turret\turret.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
