@@ -4,24 +4,38 @@
 #include <core/memory/member.h>
 #include <core/game/manager/manager_iterator.h>
 #include <core/game/game_objects/game_object.h>
+#include <core/game/game_objects/hero/hero.h>
+#include <core/game/game_objects/minion/minion.h>
+#include <core/game/game_objects/turret/turret.h>
 
 namespace game
 {
-
+	template <typename TType>
 	class ManagerTemplateAccessor
 	{
 	public:
-		ManagerTemplateAccessor(ManagerTemplate* manager);
-
-		ManagerTemplateIterator<GameObject> Begin();
-
-		ManagerTemplateIterator<GameObject> End();
+		ManagerTemplateAccessor(ManagerTemplate* manager)
+			: manager_(manager) { }
 
 
+		ManagerTemplateIterator<TType> Begin() {
+			return this->begin();
+		}
 
-		ManagerTemplateIterator<GameObject> begin();
 
-		ManagerTemplateIterator<GameObject> end();
+		ManagerTemplateIterator<TType> End() {
+			return this->end();
+		}
+
+
+		ManagerTemplateIterator<TType> begin() {
+			return ManagerTemplateIterator<TType>(manager_, 0);
+		}
+
+
+		ManagerTemplateIterator<TType> end() {
+			return ManagerTemplateIterator<TType>(manager_, manager_->size.value);
+		}
 
 	private:
 		ManagerTemplate* manager_;
@@ -31,24 +45,9 @@ namespace game
 	class ManagerTemplateProvider
 	{
 	public:
-		static ManagerTemplateAccessor GetAIHeroManager();
-
-		//FORCEINLINE static ManagerTemplateAccessor GetAIMinionManager();
-
-		// FORCEINLINE static ManagerTemplateAccessor GetAITurretClient();
+		static ManagerTemplateAccessor<Hero> GetHeroManager();
+		static ManagerTemplateAccessor<Minion> GetMinionManager();
+		static ManagerTemplateAccessor<Turret> GetTurretManager();
 	};
-
-
-
-	//FORCEINLINE  ManagerTemplateAccessor ManagerTemplateProvider::GetAIMinionManager() {
-	//	auto manager = memory::Accessor::AccessModuleAddress<ManagerTemplate* /* TODO Offset */>();
-	//	return game::ManagerTemplateAccessor(manager);
-	//}
-
-	//FORCEINLINE  ManagerTemplateAccessor game::ManagerTemplateProvider::GetAITurretClient() {
-	//	auto manager = memory::Accessor::AccessModuleAddress<ManagerTemplate* /* TODO Offset */>();
-	//	return ManagerTemplateAccessor(manager);
-	//}
-
 };
 

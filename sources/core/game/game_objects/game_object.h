@@ -3,7 +3,7 @@
 
 #include <core/memory/member.h>
 
-namespace game {
+namespace game::gameObjects {
 
 	class GameObject
 	{
@@ -17,3 +17,5 @@ namespace game {
 	};
 
 }
+
+using namespace game::gameObjects;

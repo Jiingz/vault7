@@ -158,6 +158,7 @@
     <ClInclude Include="game\game_objects\hero\hero.h" />
     <ClInclude Include="game\game_objects\minion\minion.h" />
     <ClInclude Include="game\game_objects\turret\turret.h" />
+    <ClInclude Include="game\Offsets.h" />
     <ClInclude Include="utilities.h" />
     <ClInclude Include="locator.h" />
     <ClInclude Include="game\game_objects\game_object.h" />

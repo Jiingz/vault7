@@ -2,7 +2,3 @@
 
 #include <game_objects/hero/hero.h>
 
-namespace game
-{
-
-}

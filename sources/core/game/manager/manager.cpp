@@ -1,33 +1,19 @@
 #include <core/game/manager/manager.h>
+#include <core/game/Offsets.h>
 
 using namespace game;
 
-
-ManagerTemplateAccessor::ManagerTemplateAccessor(ManagerTemplate* manager)
-	: manager_(manager) { }
-
-
-ManagerTemplateIterator<GameObject> ManagerTemplateAccessor::Begin() {
-	return this->begin();
+ManagerTemplateAccessor<Hero> ManagerTemplateProvider::GetHeroManager() {
+	auto manager = memory::Accessor::AccessModuleAddress<ManagerTemplate*, Offsets::ManagerTemplate::AIHeroClient>();
+	return ManagerTemplateAccessor<Hero>(manager);
 }
 
-
-ManagerTemplateIterator<GameObject> ManagerTemplateAccessor::End() {
-	return this->end();
+ManagerTemplateAccessor<Minion> ManagerTemplateProvider::GetMinionManager() {
+	auto manager = memory::Accessor::AccessModuleAddress<ManagerTemplate*, Offsets::ManagerTemplate::AIMinionClient>();
+	return ManagerTemplateAccessor<Minion>(manager);
 }
 
-
-ManagerTemplateIterator<GameObject> ManagerTemplateAccessor::begin() {
-	return ManagerTemplateIterator<GameObject>(manager_, 0);
-}
-
-
-ManagerTemplateIterator<GameObject> ManagerTemplateAccessor::end() {
-	return ManagerTemplateIterator<GameObject>(manager_, manager_->size.value);
-}
-
-
-ManagerTemplateAccessor ManagerTemplateProvider::GetAIHeroManager() {
-	auto manager = memory::Accessor::AccessModuleAddress<ManagerTemplate*, 0x1859FAC>();
-	return ManagerTemplateAccessor(manager);
+ManagerTemplateAccessor<Turret> ManagerTemplateProvider::GetTurretManager() {
+	auto manager = memory::Accessor::AccessModuleAddress<ManagerTemplate*, Offsets::ManagerTemplate::AITurretClient>();
+	return ManagerTemplateAccessor<Turret>(manager);
 }

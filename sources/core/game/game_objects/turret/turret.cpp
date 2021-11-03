@@ -2,7 +2,3 @@
 
 #include "turret.h"
 
-namespace game
-{
-
-}

@@ -2,10 +2,8 @@
 
 #include <game_objects/game_object.h>
 
-namespace game
+
+float GameObject::GetPercentageHealth()
 {
-	float GameObject::GetPercentageHealth()
-	{
-		return 0.0f;
-	}
+	return 0.0f;
 }
