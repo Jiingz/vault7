@@ -14,6 +14,9 @@ namespace game
 	class ManagerTemplateAccessor
 	{
 	public:
+		ManagerTemplateAccessor()
+			: manager_(nullptr) { }
+
 		ManagerTemplateAccessor(ManagerTemplate* manager)
 			: manager_(manager) { }
 

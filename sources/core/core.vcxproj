@@ -159,6 +159,7 @@
     <ClInclude Include="game\game_objects\minion\minion.h" />
     <ClInclude Include="game\game_objects\turret\turret.h" />
     <ClInclude Include="game\Offsets.h" />
+    <ClInclude Include="game\world\world.h" />
     <ClInclude Include="utilities.h" />
     <ClInclude Include="locator.h" />
     <ClInclude Include="game\game_objects\game_object.h" />
@@ -172,6 +173,7 @@
     <ClCompile Include="game\game_objects\game_object.cpp" />
     <ClCompile Include="game\game_objects\hero\hero.cpp" />
     <ClCompile Include="game\game_objects\minion\minion.cpp" />
+    <ClCompile Include="game\world\world.cpp" />
     <ClCompile Include="locator.cpp" />
     <ClCompile Include="game\manager\manager.cpp" />
     <ClCompile Include="game\game_objects\turret\turret.cpp" />
