@@ -29,5 +29,7 @@ std::unique_ptr<ModuleBase> ModuleLoader::LoadModule(const std::wstring_view pat
     auto factory = reinterpret_cast<FnResolveModule>(function_address);
     auto module = factory();
 
+    module->OnRegistration();
+
     return std::unique_ptr<ModuleBase>(module);
 }

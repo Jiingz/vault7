@@ -172,6 +172,7 @@
     <ClInclude Include="app\application.h" />
     <ClInclude Include="app\module_loader.h" />
     <ClInclude Include="glad\glad.h" />
+    <ClInclude Include="imgui\IconsMaterialDesign.h" />
     <ClInclude Include="imgui\imgui_impl_opengl3.h" />
     <ClInclude Include="imgui\imgui_impl_opengl3_loader.h" />
     <ClInclude Include="imgui\imgui_impl_sdl.h" />
@@ -183,6 +184,14 @@
     <ClInclude Include="imgui\imstb_textedit.h" />
     <ClInclude Include="imgui\imstb_truetype.h" />
     <ClInclude Include="views\app_view.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="resources\fonts\MaterialIcons-Regular.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\sdk\sdk.vcxproj">
+      <Project>{f2fd9e28-a946-45fe-b9ab-7301056e8384}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

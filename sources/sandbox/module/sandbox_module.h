@@ -1,5 +1,6 @@
 #pragma once
 
+#include <sdk/champion.h>
 #include <sdk/module.h>
 
 #include <iostream>
@@ -18,7 +19,11 @@ namespace sandbox
     public:
         SandboxModule();
 
-        void GetChampionDefinitions() final override;
+        void OnRegistration() final override;
+
+        // std::vector<std::unique_ptr<sdk::IChampion>> GetChampions() final override;
+
+    private:
     };
 }
 

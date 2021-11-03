@@ -4,6 +4,8 @@
 #include <imgui_impl_sdl.h>
 #include <imgui_impl_opengl3.h>
 
+#include <IconsMaterialDesign.h>
+
 
 using namespace loader;
 
@@ -103,7 +105,7 @@ void Application::Render()
 
         app_view_.Render();
 
-        ImGui::ShowDemoWindow();
+        // ImGui::ShowDemoWindow();
 
         ImGui::End();
     }
@@ -146,12 +148,19 @@ void Application::Initialize()
     ImGui_ImplOpenGL3_Init("#version 130");
 
     auto& style = ImGui::GetStyle();
+
     style.ChildRounding = 5.0f;
     style.FrameRounding = 5.0f;
 
+    static const ImWchar icons_ranges[] = { ICON_MIN_MD, ICON_MAX_MD, 0 };
+    ImFontConfig icons_config;
+    icons_config.MergeMode = true;
+    icons_config.PixelSnapH = true;
+
     ImGuiIO& io = ImGui::GetIO();
     io.Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\Candara.ttf", 13.0f);
-    io.Fonts->TexGlyphPadding = 1;
+    io.Fonts->AddFontFromFileTTF("resources\\fonts\\MaterialIcons-Regular.ttf", 32.0f, &icons_config, icons_ranges);
+
 
     io.Fonts->Build();
 }

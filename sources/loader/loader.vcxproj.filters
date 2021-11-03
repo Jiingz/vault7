@@ -95,5 +95,11 @@
     <ClInclude Include="app\module_loader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="imgui\IconsMaterialDesign.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="resources\fonts\MaterialIcons-Regular.ttf" />
   </ItemGroup>
 </Project>

@@ -24,5 +24,16 @@
     <ClInclude Include="module.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="exports.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="champion.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="module.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

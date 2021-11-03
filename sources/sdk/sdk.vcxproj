@@ -20,8 +20,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="champion.h" />
+    <ClInclude Include="exports.h" />
     <ClInclude Include="metadata.h" />
     <ClInclude Include="module.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="champion.cpp" />
+    <ClCompile Include="module.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

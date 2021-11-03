@@ -15,12 +15,18 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="module\module.h">
+    <ClInclude Include="module\sandbox_module.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="champions\ezreal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="module\module.cpp">
+    <ClCompile Include="module\sandbox_module.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="champions\ezreal.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

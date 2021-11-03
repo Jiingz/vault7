@@ -3,6 +3,7 @@
 
 #include <wrl/client.h>
 
+#include <IconsMaterialDesign.h>
 #include <imgui.h>
 
 #include <filesystem>
@@ -23,17 +24,55 @@ AppView::AppView()
 void AppView::Render()
 {
     {
-        ImGui::BeginChild("Left", ImVec2(390.0f, 500.0f), true, ImGuiWindowFlags_AlwaysAutoResize);
-        ImGui::Text("Something");
+        ImGui::BeginChild("ModuleWindow", ImVec2(390.0f, 500.0f), true, ImGuiWindowFlags_AlwaysAutoResize);
+
+        if (ImGui::Button("Load Modules", ImVec2(150.0f, 0.0f)))
+        {
+            this->LoadModules();
+        }
+
+        {
+            static bool enabled = true;
+        
+            ImGui::BeginChild("Item", ImVec2(-1.0f, 75.0f), true);
+        
+            ImGui::SetCursorPosY(ImGui::GetFont()->FontSize * 2.0f);
+            ImGui::Text(ICON_MD_EXTENSION);
+        
+            ImGui::SameLine();
+        
+            ImGui::SetCursorPosY(ImGui::GetFont()->FontSize);
+            ImGui::Text("Sandbox by Vault7");
+        
+            ImGui::SameLine(ImGui::GetContentRegionMax().x - 18.0f);
+        
+            ImGui::SetCursorPosY(ImGui::GetFont()->FontSize * 0.5f);
+            ImGui::Checkbox("", &enabled);
+        
+            const ImVec2 max_region = ImGui::GetContentRegionMax();
+            ImGui::SetCursorPosY(max_region.y - 20.0f);
+        
+            if (ImGui::Button("Remove"))
+            {
+            }
+
+            ImGui::SameLine();
+
+            if (ImGui::Button("Champions"))
+            {
+            }
+        
+            ImGui::EndChild();
+        }
+
         ImGui::EndChild();
     }
 
     ImGui::SameLine(0.0f, 5.0f);
 
     {
-        ImGui::BeginChild("Right", ImVec2(390.0f, 500.0f), true, ImGuiWindowFlags_AlwaysAutoResize);
+        ImGui::BeginChild("InformationWindow", ImVec2(390.0f, 500.0f), true, ImGuiWindowFlags_AlwaysAutoResize);
 
-        ImGui::Text("Something");
         ImGui::EndChild();
     }
 
@@ -147,6 +186,10 @@ void AppView::LoadModules()
                             continue;
                         }
 
+                        for (auto str : module->GetSupportedChampions()) {
+                            std::cout << str << "\n";
+                        }
+
                         loaded_module_information_.push_back(module->GetExportInfo());
 
                         // std::filesystem::path target_file = target_dir / path.filename();
@@ -162,6 +205,8 @@ void AppView::LoadModules()
                 } while (fetched != 0);
             }
         }
+
+        modules_loaded_ = !loaded_module_information_.empty();
     }
 }
 
