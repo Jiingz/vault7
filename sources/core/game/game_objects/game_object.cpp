@@ -3,7 +3,7 @@
 #include <game_objects/game_object.h>
 
 
-float GameObject::GetPercentageHealth()
+float GameObject::GetPercentageHealth() const
 {
 	return 0.0f;
 }
