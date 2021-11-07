@@ -2,31 +2,35 @@
 
 using namespace core;
 using namespace event;
+using namespace game;
+
+std::shared_ptr<Locator> Locator::locator_;
 
 
-Locator Locator::s_locator_ = Locator();
-
-
-void Locator::Initialize()
+const std::shared_ptr<Locator> Locator::GetLocator()
 {
-	s_locator_.event_bus_ = std::make_shared<EventBus>();
-	s_locator_.world_ = std::make_shared<game::World>();
+	if (!locator_)
+	{
+		locator_ = std::make_shared<Locator>();
+	}
+	return locator_;
 }
-
-
-void Locator::Finalize()
-{
-	s_locator_.event_bus_.reset();
-	s_locator_.world_.reset();
-}
-
 
 const std::shared_ptr<EventBus> Locator::GetEventBus()
 {
-	return s_locator_.event_bus_;
+	if (!event_bus_)
+	{
+		event_bus_ = std::make_shared<EventBus>();
+	}
+	return event_bus_;
 }
 
 const std::shared_ptr<game::World> core::Locator::GetWorld()
 {
-	return s_locator_.world_;
+	if (!world_)
+	{
+		world_ = std::make_shared<game::World>();
+
+	}
+	return world_;
 }

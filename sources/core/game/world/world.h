@@ -11,7 +11,7 @@ namespace game
 	public:
 		World();
 
-		ManagerTemplateAccessor<Hero> GetHeroList();
+		ManagerTemplateAccessor<Hero> GetHeroList() const;
 
 	private:
 		ManagerTemplateAccessor<Hero>  HeroList;

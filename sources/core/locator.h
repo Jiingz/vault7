@@ -10,18 +10,18 @@ namespace core
 {
 	class Locator
 	{
+		//Getter for Instances
 	public:
-		static void Initialize();
-		static void Finalize();
+		static const std::shared_ptr<Locator> GetLocator();
 
-		static const std::shared_ptr<event::EventBus> GetEventBus();
-		static const std::shared_ptr<game::World> GetWorld();
+		const std::shared_ptr<event::EventBus> GetEventBus();
+		const std::shared_ptr<game::World> GetWorld();
 
-
+		//Singletons
 	private:
+		static std::shared_ptr<Locator> locator_;
+
 		std::shared_ptr<event::EventBus> event_bus_;
 		std::shared_ptr<game::World> world_;
-
-		static Locator s_locator_;
 	};
 }

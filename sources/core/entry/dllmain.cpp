@@ -7,9 +7,10 @@
 
 int main()
 {
-	core::Locator::Initialize();
-
-	core::Locator::Finalize();
+	for (auto h : core::Locator::GetLocator()->GetWorld()->GetHeroList())
+	{
+		MessageBoxA(NULL,std::to_string(h.health.value).c_str(), "TEST", NULL);
+	}
 
 	return 0;
 }
