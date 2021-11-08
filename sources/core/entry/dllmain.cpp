@@ -7,7 +7,7 @@
 
 int main()
 {
-	for (auto h : core::Locator::GetLocator()->GetWorld()->GetHeroList())
+	for (auto h : core::Locator::GetWorld()->GetHeroList())
 	{
 		MessageBoxA(NULL,std::to_string(h.health.value).c_str(), "TEST", NULL);
 	}
