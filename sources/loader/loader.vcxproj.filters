@@ -51,6 +51,9 @@
     <ClCompile Include="app\module_loader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="app\locator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
@@ -96,6 +99,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="imgui\IconsMaterialDesign.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="app\locator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="app\resource_holder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

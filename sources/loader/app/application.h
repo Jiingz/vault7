@@ -23,6 +23,10 @@ namespace loader
 
     private:
         void Initialize();
+        void InitializeGraphics();
+        void InitializeResources();
+        void InitializeViews();
+        void InitializeModules();
 
     private:
         SDL_Window* window_;

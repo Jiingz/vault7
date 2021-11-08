@@ -1,5 +1,6 @@
 #include <loader/views/app_view.h>
 #include <loader/app/module_loader.h>
+#include <loader/app/locator.h>
 
 #include <wrl/client.h>
 
@@ -20,6 +21,17 @@ AppView::AppView()
 {
 }
 
+void AppView::Initialize()
+{
+    modules_ = Locator::GetModules();
+
+    auto font_resources = Locator::GetFonts();
+
+    md_main_font_ = &font_resources->Get(TEXT("md-main-font"));
+    md_material_font_ = &font_resources->Get(TEXT("md-material-font"));
+    lg_material_font_ = &font_resources->Get(TEXT("lg-material-font"));
+}
+
 
 void AppView::Render()
 {
@@ -31,38 +43,12 @@ void AppView::Render()
             this->LoadModules();
         }
 
+        for (auto it = modules_->Begin(); it != modules_->End();)
         {
-            static bool enabled = true;
-        
-            ImGui::BeginChild("Item", ImVec2(-1.0f, 75.0f), true);
-        
-            ImGui::SetCursorPosY(ImGui::GetFont()->FontSize * 2.0f);
-            ImGui::Text(ICON_MD_EXTENSION);
-        
-            ImGui::SameLine();
-        
-            ImGui::SetCursorPosY(ImGui::GetFont()->FontSize);
-            ImGui::Text("Sandbox by Vault7");
-        
-            ImGui::SameLine(ImGui::GetContentRegionMax().x - 18.0f);
-        
-            ImGui::SetCursorPosY(ImGui::GetFont()->FontSize * 0.5f);
-            ImGui::Checkbox("", &enabled);
-        
-            const ImVec2 max_region = ImGui::GetContentRegionMax();
-            ImGui::SetCursorPosY(max_region.y - 20.0f);
-        
-            if (ImGui::Button("Remove"))
+            if (!this->RenderModule(it))
             {
+                ++it;
             }
-
-            ImGui::SameLine();
-
-            if (ImGui::Button("Champions"))
-            {
-            }
-        
-            ImGui::EndChild();
         }
 
         ImGui::EndChild();
@@ -82,52 +68,100 @@ void AppView::Render()
     if (ImGui::Button("Inject", ImVec2(-1.0f, 35.0f)))
     {
     }
+}
 
-    /*
-    if (ImGui::BeginMainMenuBar())
+
+bool AppView::RenderModule(ResourceHolder<sdk::ModuleBase>::Iterator it)
+{
+    static bool enabled = true;
+    bool removed = false;
+
+    const auto module_filename = it->first;
+    const auto info = it->second->GetExportInfo();
+
+    std::string child_name;
+    child_name.resize(module_filename.size());
+
+    WideCharToMultiByte(CP_ACP, 0, module_filename.c_str(), module_filename.size(), &child_name[0], module_filename.size(), nullptr, nullptr);
+
+    ImGui::BeginChild(child_name.c_str(), ImVec2(-1.0f, 100.0f), true);
+
+    ImGui::PushFont(lg_material_font_);
+    ImGui::Text(ICON_MD_EXTENSION);
+    ImGui::PopFont();
+
+    ImGui::SameLine();
+
+    ImGui::SetCursorPosY(ImGui::GetFont()->FontSize);
+    ImGui::Text((info.name + " by " + info.author + " - " + info.version).c_str());
+
+    // ImGui::SameLine(ImGui::GetContentRegionMax().x - 18.0f);
+    // ImGui::Checkbox("", &enabled);
+
+    ImGui::PushFont(md_material_font_);
+    ImGui::Text(ICON_MD_INFO);
+    ImGui::PopFont();
+
+    ImGui::SameLine(0.0f, 2.0f);
+
+    ImGui::SetCursorPosY(ImGui::GetCursorPosY() + 2.0f);
+    ImGui::TextDisabled("Champions");
+    if (ImGui::IsItemHovered())
     {
-        if (ImGui::BeginMenu("Modules"))
-        {
-            if (ImGui::MenuItem("Load"))
-            {
-                this->LoadModules();
+        ImGui::BeginTooltip();
 
-                // Set the flag that we loaded new modules.
-                modules_loaded_ = !loaded_module_information_.empty();
-            }
+        ImGui::Text("Ezreal");
 
-            if (ImGui::MenuItem("Remove all")) { }
-
-            ImGui::EndMenu();
-        }
-
-        ImGui::EndMainMenuBar();
+        ImGui::EndTooltip();
     }
 
-    // Open popup window to select modules.
-    if (modules_loaded_)
+    // Footer
+    const ImVec2 max_region = ImGui::GetContentRegionMax();
+    ImGui::SetCursorPosY(max_region.y - 20.0f);
+
+    std::string enable_disable_text = enabled ? "Disable" : "Enable";
+
+    if (enabled)
+        ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(220.0f / 255.0f, 53.0f / 255.0f, 69.0f / 255.0f, 1.0f));
+    else
+        ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(40.0f / 255.0f, 167.0f / 255.0f, 69.0f / 255.0f, 1.0f));
+
+    if (ImGui::Button(enable_disable_text.c_str()))
     {
-        ImGui::OpenPopup("ModuleSelectionPopup");
-        modules_loaded_ = false;
+        enabled = !enabled;
     }
 
-    // Module selection popup
-    if (ImGui::BeginPopupModal("ModuleSelectionPopup", 0, ImGuiWindowFlags_AlwaysAutoResize))
+    ImGui::PopStyleColor();
+
+    ImGui::SameLine();
+
+    if (ImGui::Button("Remove"))
     {
-        for (const auto& info : loaded_module_information_)
-        {
-            ImGui::Text(info.name.c_str());
-        }
-
-        if (ImGui::Button("Close"))
-        {
-            loaded_module_information_.clear();
-            ImGui::CloseCurrentPopup();
-        }
-
-        ImGui::EndPopup();
+        this->RemoveModule(it++);
+        removed = true;
     }
-    */
+
+    ImGui::EndChild();
+    return removed;
+}
+
+
+void AppView::RemoveModule(ResourceHolder<sdk::ModuleBase>::Iterator it)
+{
+    const auto module_filename = it->first;
+
+    WCHAR current_dir[MAX_PATH];
+    GetModuleFileName(nullptr, current_dir, MAX_PATH);
+
+    std::filesystem::path file_to_remove =
+        std::filesystem::path(current_dir).parent_path() /
+        TEXT("modules") /
+        std::filesystem::path(module_filename).filename();
+
+    if (DeleteFile(file_to_remove.wstring().c_str()))
+    {
+        modules_->Remove(it);
+    }
 }
 
 
@@ -161,10 +195,10 @@ void AppView::LoadModules()
 
                 // Get current folder to build the path to the modules folder. If it does not exists create it.
                 WCHAR current_dir[MAX_PATH];
-                GetCurrentDirectory(MAX_PATH, current_dir);
+                GetModuleFileName(nullptr, current_dir, MAX_PATH);
 
-                std::filesystem::path target_dir = current_dir / std::filesystem::path("modules");
-                CreateDirectory(target_dir.c_str(), nullptr);
+                std::filesystem::path modules_dir = std::filesystem::path(current_dir).parent_path() / std::filesystem::path("modules");
+                CreateDirectory(modules_dir.c_str(), nullptr);
 
                 do
                 {
@@ -175,8 +209,6 @@ void AppView::LoadModules()
                         PWSTR module_display_name = nullptr;
                         result = item->GetDisplayName(SIGDN_FILESYSPATH, &module_display_name);
 
-                        WCHAR m[] = TEXT("modules");
-
                         std::filesystem::path path = module_display_name;
 
                         auto module = ModuleLoader().LoadModule(path.wstring());
@@ -186,15 +218,9 @@ void AppView::LoadModules()
                             continue;
                         }
 
-                        for (auto str : module->GetSupportedChampions()) {
-                            std::cout << str << "\n";
-                        }
+                        modules_->Store(module_display_name, std::move(module));
 
-                        loaded_module_information_.push_back(module->GetExportInfo());
-
-                        // std::filesystem::path target_file = target_dir / path.filename();
-                        // 
-                        // CopyFile(path.c_str(), target_file.c_str(), FALSE);
+                        CopyFile(path.wstring().c_str(), (modules_dir / path.filename()).wstring().c_str(), FALSE);
 
                         if (SUCCEEDED(result))
                         {
@@ -205,8 +231,6 @@ void AppView::LoadModules()
                 } while (fetched != 0);
             }
         }
-
-        modules_loaded_ = !loaded_module_information_.empty();
     }
 }
 
