@@ -4,9 +4,16 @@
 #include <core/memory/member.h>
 #include <core/game/manager/manager_iterator.h>
 #include <core/game/game_objects/game_object.h>
-#include <core/game/game_objects/hero/hero.h>
-#include <core/game/game_objects/minion/minion.h>
-#include <core/game/game_objects/turret/turret.h>
+
+#include <attackable_units/AttackableUnit.h>
+
+#include <attackable_units/hero/hero.h>
+#include <attackable_units/minion/minion.h>
+
+#include <attackable_units/buildings/Building.h>
+#include <attackable_units/buildings/turret/turret.h>
+#include <attackable_units/buildings/inhibitor/Inhibitor.h>
+
 
 namespace game
 {
@@ -48,9 +55,13 @@ namespace game
 	class ManagerTemplateProvider
 	{
 	public:
+		static ManagerTemplateAccessor<AttackableUnit> GetAttackableUnits();
 		static ManagerTemplateAccessor<Hero> GetHeroManager();
 		static ManagerTemplateAccessor<Minion> GetMinionManager();
 		static ManagerTemplateAccessor<Turret> GetTurretManager();
+		static ManagerTemplateAccessor<GameObject> GetShopManager();
+		static ManagerTemplateAccessor<Inhibitor> GetInhibitorManager();
+		static ManagerTemplateAccessor<Building> GetBuildingManager();
 	};
 };
 

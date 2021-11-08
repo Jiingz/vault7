@@ -111,7 +111,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;CORE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)sources;$(SolutionDir)sources\core\game\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)sources;D:\dev\vault7\sources\core\game\game_objects</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -155,9 +155,12 @@
   <ItemGroup>
     <ClInclude Include="event\events.h" />
     <ClInclude Include="event\event_bus.h" />
-    <ClInclude Include="game\game_objects\hero\hero.h" />
-    <ClInclude Include="game\game_objects\minion\minion.h" />
-    <ClInclude Include="game\game_objects\turret\turret.h" />
+    <ClInclude Include="game\game_objects\attackable_units\AttackableUnit.h" />
+    <ClInclude Include="game\game_objects\attackable_units\buildings\building.h" />
+    <ClInclude Include="game\game_objects\attackable_units\buildings\inhibitor\inhibitor.h" />
+    <ClInclude Include="game\game_objects\attackable_units\hero\hero.h" />
+    <ClInclude Include="game\game_objects\attackable_units\minion\minion.h" />
+    <ClInclude Include="game\game_objects\attackable_units\buildings\turret\turret.h" />
     <ClInclude Include="game\Offsets.h" />
     <ClInclude Include="game\world\world.h" />
     <ClInclude Include="utilities.h" />
@@ -170,13 +173,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="entry\dllmain.cpp" />
+    <ClCompile Include="game\game_objects\attackable_units\buildings\building.cpp" />
+    <ClCompile Include="game\game_objects\attackable_units\buildings\inhibitor\inhibitor.cpp" />
     <ClCompile Include="game\game_objects\game_object.cpp" />
-    <ClCompile Include="game\game_objects\hero\hero.cpp" />
-    <ClCompile Include="game\game_objects\minion\minion.cpp" />
+    <ClCompile Include="game\game_objects\attackable_units\hero\hero.cpp" />
+    <ClCompile Include="game\game_objects\attackable_units\minion\minion.cpp" />
     <ClCompile Include="game\world\world.cpp" />
     <ClCompile Include="locator.cpp" />
     <ClCompile Include="game\manager\manager.cpp" />
-    <ClCompile Include="game\game_objects\turret\turret.cpp" />
+    <ClCompile Include="game\game_objects\attackable_units\buildings\turret\turret.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

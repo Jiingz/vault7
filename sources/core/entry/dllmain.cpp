@@ -7,9 +7,18 @@
 
 int main()
 {
-	for (auto h : core::Locator::GetWorld()->GetHeroList())
+	while (true)
 	{
-		MessageBoxA(NULL,std::to_string(h.health.value).c_str(), "TEST", NULL);
+		if (GetAsyncKeyState(VK_SPACE))
+		{
+			for (auto h : core::Locator::GetWorld()->GetHeroes())
+			{
+				MessageBoxA(NULL, std::to_string(h.health.value).c_str(), "TEST", NULL);
+			}
+		}
+
+
+
 	}
 
 	return 0;

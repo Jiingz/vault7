@@ -88,6 +88,10 @@ namespace Offsets
 		AIMinionClient = 0x18701F4, // A1 ? ? ? ? 53 55 8B 6C 24 1C		// 8B 35 ? ? ? ? 8B 56 
 		AITurretClient = 0x3100990, // A1 ? ? ? ? 53 56 8B 70 04		// 8B 0D ? ? ? ? FF 74 24 14 FF 74 24 14 E8
 		AIHeroClient = 0x186E030, 	// 8B 0D ? ? ? ? 8D 44 24 10 50 8D 44 24 10 50 53
+		AIAttackableUnitClient = 0x1870160, // A1 ? ? ? ? FF B4 24 ? ? ? ? F3 0F 10 44 24 ? F3
+		AIShopClient = 0x3100994, // 8B 0D ? ? ? ? E8 ? ? ? ? 84 C0 75 11 8B
+		AIInhibitorClient = 0x310DAE0, // A1 ? ? ? ? 53 55 56 8B 70 04 8B 40
+		AIBuildingClient = 0x186D888, // 8B 15 ? ? ? ? 8B 7A 04 8B 42 08 8D 0C 87 3B F9 73 38
 	};
 
 	enum AIManager
