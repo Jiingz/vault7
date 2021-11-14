@@ -7,6 +7,7 @@ using namespace game;
 std::unique_ptr<event::EventBus> Locator::s_event_bus_;
 std::unique_ptr<game::World> Locator::s_world_;
 std::unique_ptr<HookingService> Locator::s_hooking_service_;
+std::unique_ptr<FunctionAccessor> Locator::s_function_accessor_;
 
 EventBus* Locator::GetEventBus()
 {
@@ -33,4 +34,13 @@ HookingService* Locator::GetHookingService()
 		s_hooking_service_ = std::make_unique<HookingService>();
 	}
 	return s_hooking_service_.get();
+}
+
+FunctionAccessor* Locator::GetFunctionAccessor()
+{
+	if (!s_function_accessor_)
+	{
+		s_function_accessor_ = std::make_unique<FunctionAccessor>();
+	}
+	return s_function_accessor_.get();
 }

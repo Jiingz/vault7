@@ -1,5 +1,4 @@
 #pragma once
-#include <core/memory/accessor.h>
 
 namespace game
 {
@@ -7,13 +6,22 @@ namespace game
 	struct Function
 	{
 	public:
-		Function(DWORD_PTR offset)
+		Function()
 		{
-			this->func_ = static_Cast<TTypedef>(memory::Accessor::AccessModuleAddress(offset));
+			this->func_ = nullptr;
+		}
+
+		Function(ULONG offset)
+		{
+			this->func_ = reinterpret_cast<TTypedef>(reinterpret_cast<DWORD>(GetModuleHandle(NULL)) + offset);
 		}
 
 		TReturnType Call(Args... args)
 		{
+			return this->func_(args...);
+		}
+
+		TReturnType operator()(Args... args) const {
 			return this->func_(args...);
 		}
 

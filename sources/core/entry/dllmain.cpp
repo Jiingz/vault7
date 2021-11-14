@@ -3,13 +3,11 @@
 #include <core/game/manager/manager.h>
 #include <core/event/events.h>
 #include <core/locator.h>
-#include <core/game/functions/function.h>
+#include <core/game/functions/function_accessor.h>
 
 int main()
 {
-	typedef float(__cdecl* fnGetAttackDelay)(Hero* pObj);
-	game::Function test = game::Function<float, fnGetAttackDelay, Hero*>(0x2848F0);
-
+	
 	auto lp = core::Locator::GetWorld()->GetPlayer();
 
 
@@ -19,8 +17,9 @@ int main()
 		{
 			for (auto h : core::Locator::GetWorld()->GetHeroes())
 			{
-				MessageBoxA(NULL, std::to_string(test.Call(lp)).c_str(), "TEST", NULL);
+				MessageBoxA(NULL, std::to_string(lp->GetAttackDelay()).c_str(), "TEST", NULL);
 			}
+			
 		}
 
 

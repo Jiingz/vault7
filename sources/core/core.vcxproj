@@ -157,6 +157,7 @@
     <ClInclude Include="event\events.h" />
     <ClInclude Include="event\event_bus.h" />
     <ClInclude Include="game\functions\function.h" />
+    <ClInclude Include="game\functions\function_accessor.h" />
     <ClInclude Include="game\game_objects\attackable_units\AttackableUnit.h" />
     <ClInclude Include="game\game_objects\attackable_units\building.h" />
     <ClInclude Include="game\game_objects\attackable_units\inhibitor.h" />
@@ -177,6 +178,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="entry\dllmain.cpp" />
+    <ClCompile Include="game\functions\function_accessor.cpp" />
+    <ClCompile Include="game\game_objects\attackable_units\AttackableUnit.cpp" />
     <ClCompile Include="game\game_objects\attackable_units\building.cpp" />
     <ClCompile Include="game\game_objects\attackable_units\inhibitor.cpp" />
     <ClCompile Include="game\game_objects\game_object.cpp" />
