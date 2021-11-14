@@ -7,12 +7,12 @@
 
 #include <attackable_units/AttackableUnit.h>
 
-#include <attackable_units/hero/hero.h>
-#include <attackable_units/minion/minion.h>
+#include <attackable_units/hero.h>
+#include <attackable_units/minion.h>
 
-#include <attackable_units/buildings/Building.h>
-#include <attackable_units/buildings/turret/turret.h>
-#include <attackable_units/buildings/inhibitor/Inhibitor.h>
+#include <attackable_units/Building.h>
+#include <attackable_units/turret.h>
+#include <attackable_units/Inhibitor.h>
 
 
 namespace game

@@ -1,5 +1,5 @@
 #pragma once
-#include <attackable_units/buildings/Building.h>
+#include <attackable_units/Building.h>
 
 namespace game::gameObjects
 {

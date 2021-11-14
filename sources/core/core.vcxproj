@@ -111,7 +111,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;CORE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)sources;D:\dev\vault7\sources\core\game\game_objects</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)sources;D:\dev\vault7\sources\core\game\game_objects;$(SolutionDir)extern</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -120,6 +120,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
+      <AdditionalDependencies>$(SolutionDir)extern/minhook/lib/libMinHook-x86-v141-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -155,14 +156,17 @@
   <ItemGroup>
     <ClInclude Include="event\events.h" />
     <ClInclude Include="event\event_bus.h" />
+    <ClInclude Include="game\functions\function.h" />
     <ClInclude Include="game\game_objects\attackable_units\AttackableUnit.h" />
-    <ClInclude Include="game\game_objects\attackable_units\buildings\building.h" />
-    <ClInclude Include="game\game_objects\attackable_units\buildings\inhibitor\inhibitor.h" />
-    <ClInclude Include="game\game_objects\attackable_units\hero\hero.h" />
-    <ClInclude Include="game\game_objects\attackable_units\minion\minion.h" />
-    <ClInclude Include="game\game_objects\attackable_units\buildings\turret\turret.h" />
+    <ClInclude Include="game\game_objects\attackable_units\building.h" />
+    <ClInclude Include="game\game_objects\attackable_units\inhibitor.h" />
+    <ClInclude Include="game\game_objects\attackable_units\hero.h" />
+    <ClInclude Include="game\game_objects\attackable_units\minion.h" />
+    <ClInclude Include="game\game_objects\attackable_units\turret.h" />
     <ClInclude Include="game\Offsets.h" />
     <ClInclude Include="game\world\world.h" />
+    <ClInclude Include="hooking\hooking_service.h" />
+    <ClInclude Include="hooking\typedefs.h" />
     <ClInclude Include="utilities.h" />
     <ClInclude Include="locator.h" />
     <ClInclude Include="game\game_objects\game_object.h" />
@@ -173,15 +177,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="entry\dllmain.cpp" />
-    <ClCompile Include="game\game_objects\attackable_units\buildings\building.cpp" />
-    <ClCompile Include="game\game_objects\attackable_units\buildings\inhibitor\inhibitor.cpp" />
+    <ClCompile Include="game\game_objects\attackable_units\building.cpp" />
+    <ClCompile Include="game\game_objects\attackable_units\inhibitor.cpp" />
     <ClCompile Include="game\game_objects\game_object.cpp" />
-    <ClCompile Include="game\game_objects\attackable_units\hero\hero.cpp" />
-    <ClCompile Include="game\game_objects\attackable_units\minion\minion.cpp" />
+    <ClCompile Include="game\game_objects\attackable_units\hero.cpp" />
+    <ClCompile Include="game\game_objects\attackable_units\minion.cpp" />
     <ClCompile Include="game\world\world.cpp" />
     <ClCompile Include="locator.cpp" />
     <ClCompile Include="game\manager\manager.cpp" />
-    <ClCompile Include="game\game_objects\attackable_units\buildings\turret\turret.cpp" />
+    <ClCompile Include="game\game_objects\attackable_units\turret.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

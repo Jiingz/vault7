@@ -3,17 +3,23 @@
 #include <core/game/manager/manager.h>
 #include <core/event/events.h>
 #include <core/locator.h>
-
+#include <core/game/functions/function.h>
 
 int main()
 {
+	typedef float(__cdecl* fnGetAttackDelay)(Hero* pObj);
+	game::Function test = game::Function<float, fnGetAttackDelay, Hero*>(0x2848F0);
+
+	auto lp = core::Locator::GetWorld()->GetPlayer();
+
+
 	while (true)
 	{
 		if (GetAsyncKeyState(VK_SPACE))
 		{
 			for (auto h : core::Locator::GetWorld()->GetHeroes())
 			{
-				MessageBoxA(NULL, std::to_string(h.health.value).c_str(), "TEST", NULL);
+				MessageBoxA(NULL, std::to_string(test.Call(lp)).c_str(), "TEST", NULL);
 			}
 		}
 

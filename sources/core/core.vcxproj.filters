@@ -42,13 +42,13 @@
     <ClInclude Include="utilities.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="game\game_objects\attackable_units\hero\hero.h">
+    <ClInclude Include="game\game_objects\attackable_units\hero.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="game\game_objects\attackable_units\minion\minion.h">
+    <ClInclude Include="game\game_objects\attackable_units\minion.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="game\game_objects\attackable_units\buildings\turret\turret.h">
+    <ClInclude Include="game\game_objects\attackable_units\turret.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="game\Offsets.h">
@@ -60,10 +60,19 @@
     <ClInclude Include="game\game_objects\attackable_units\AttackableUnit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="game\game_objects\attackable_units\buildings\building.h">
+    <ClInclude Include="game\game_objects\attackable_units\inhibitor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="game\game_objects\attackable_units\buildings\inhibitor\inhibitor.h">
+    <ClInclude Include="game\game_objects\attackable_units\building.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hooking\hooking_service.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hooking\typedefs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="game\functions\function.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -77,25 +86,25 @@
     <ClCompile Include="locator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\game_objects\attackable_units\hero\hero.cpp">
+    <ClCompile Include="game\game_objects\attackable_units\hero.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="game\game_objects\game_object.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\game_objects\attackable_units\minion\minion.cpp">
+    <ClCompile Include="game\game_objects\attackable_units\minion.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\game_objects\attackable_units\buildings\turret\turret.cpp">
+    <ClCompile Include="game\game_objects\attackable_units\turret.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="game\world\world.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\game_objects\attackable_units\buildings\building.cpp">
+    <ClCompile Include="game\game_objects\attackable_units\inhibitor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\game_objects\attackable_units\buildings\inhibitor\inhibitor.cpp">
+    <ClCompile Include="game\game_objects\attackable_units\building.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
