@@ -1,4 +1,5 @@
 #pragma once
+#include <d3d11.h>
 #include <core/game/functions/function.h>
 #include <core/game/game_objects/attackable_units/hero.h>
 #include <attackable_units/AttackableUnit.h>

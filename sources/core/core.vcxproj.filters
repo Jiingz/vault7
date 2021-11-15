@@ -69,13 +69,16 @@
     <ClInclude Include="hooking\hooking_service.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="hooking\typedefs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="game\functions\function.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="game\functions\function_accessor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hooking\kiero.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hooking\callbacks.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -114,6 +117,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="game\functions\function_accessor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hooking\kiero.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hooking\callbacks.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hooking\hooking_service.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

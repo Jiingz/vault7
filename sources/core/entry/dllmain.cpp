@@ -7,25 +7,7 @@
 
 int main()
 {
-	
-	auto lp = core::Locator::GetWorld()->GetPlayer();
-
-
-	while (true)
-	{
-		if (GetAsyncKeyState(VK_SPACE))
-		{
-			for (auto h : core::Locator::GetWorld()->GetHeroes())
-			{
-				MessageBoxA(NULL, std::to_string(lp->GetAttackDelay()).c_str(), "TEST", NULL);
-			}
-			
-		}
-
-
-
-	}
-
+	core::Locator::GetHookingService()->HookPresent();
 	return 0;
 }
 

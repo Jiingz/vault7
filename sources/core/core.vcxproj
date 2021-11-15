@@ -166,8 +166,9 @@
     <ClInclude Include="game\game_objects\attackable_units\turret.h" />
     <ClInclude Include="game\Offsets.h" />
     <ClInclude Include="game\world\world.h" />
+    <ClInclude Include="hooking\callbacks.h" />
     <ClInclude Include="hooking\hooking_service.h" />
-    <ClInclude Include="hooking\typedefs.h" />
+    <ClInclude Include="hooking\kiero.h" />
     <ClInclude Include="utilities.h" />
     <ClInclude Include="locator.h" />
     <ClInclude Include="game\game_objects\game_object.h" />
@@ -186,6 +187,9 @@
     <ClCompile Include="game\game_objects\attackable_units\hero.cpp" />
     <ClCompile Include="game\game_objects\attackable_units\minion.cpp" />
     <ClCompile Include="game\world\world.cpp" />
+    <ClCompile Include="hooking\callbacks.cpp" />
+    <ClCompile Include="hooking\hooking_service.cpp" />
+    <ClCompile Include="hooking\kiero.cpp" />
     <ClCompile Include="locator.cpp" />
     <ClCompile Include="game\manager\manager.cpp" />
     <ClCompile Include="game\game_objects\attackable_units\turret.cpp" />
