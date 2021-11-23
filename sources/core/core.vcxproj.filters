@@ -81,6 +81,9 @@
     <ClInclude Include="hooking\callbacks.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="hooking\makesyscall.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="game\manager\manager.cpp">
@@ -114,9 +117,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="game\game_objects\attackable_units\AttackableUnit.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="game\functions\function_accessor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="hooking\kiero.cpp">

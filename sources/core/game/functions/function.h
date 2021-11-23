@@ -1,31 +1,47 @@
 #pragma once
-
+#include <type_traits>
 namespace game
 {
-	template<typename TReturnType, typename TTypedef, typename... Args>
+	enum class CallingConvention {
+		Thiscall,
+		Stdcall,
+		Cdecl,
+		Fastcall
+	};
+
+	template <CallingConvention TCallingConvention, typename TReturnType, ULONG TOffset = 0, typename ...TArgs>
 	struct Function
 	{
+	private:
+		typedef TReturnType(__thiscall* FunctionThisCall)(TArgs...);
+		typedef TReturnType(__fastcall* FunctionFastcall)(TArgs...);
+		typedef TReturnType(__stdcall* FunctionStdcall)(TArgs...);
+		typedef TReturnType(__cdecl* FunctionCdecl)(TArgs...);
+
 	public:
+		typedef typename std::conditional <
+			TCallingConvention == CallingConvention::Thiscall,
+			FunctionThisCall,
+			typename std::conditional<
+			TCallingConvention == CallingConvention::Cdecl,
+			FunctionCdecl,
+			typename std::conditional<
+			TCallingConvention == CallingConvention::Stdcall,
+			FunctionStdcall,
+			FunctionFastcall>>::type
+			>::type DefinedFunction;
+
 		Function()
 		{
-			this->func_ = nullptr;
+			this->func_ = reinterpret_cast<DefinedFunction>(reinterpret_cast<DWORD>(GetModuleHandle(NULL)) + TOffset);
 		}
 
-		Function(ULONG offset)
-		{
-			this->func_ = reinterpret_cast<TTypedef>(reinterpret_cast<DWORD>(GetModuleHandle(NULL)) + offset);
-		}
-
-		TReturnType Call(Args... args)
-		{
-			return this->func_(args...);
-		}
-
-		TReturnType operator()(Args... args) const {
+		TReturnType operator()(TArgs... args) const {
 			return this->func_(args...);
 		}
 
 	private:
-		TTypedef func_;
+		DefinedFunction func_;
 	};
+
 }

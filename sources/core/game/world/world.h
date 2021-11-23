@@ -23,7 +23,7 @@ namespace game
 		Hero* GetPlayer() const;
 
 	private:
-		ManagerTemplateAccessor<Minion> attackable_units_;
+		ManagerTemplateAccessor<AttackableUnit> attackable_units_;
 		ManagerTemplateAccessor<Hero>  heroes_;
 		ManagerTemplateAccessor<Minion> minions_;
 		ManagerTemplateAccessor<Turret> turrets_;

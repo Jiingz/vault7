@@ -4,8 +4,14 @@ using namespace game;
 
 World::World()
 {
+	this->attackable_units_ = ManagerTemplateProvider::GetAttackableUnits();
 	this->heroes_ = ManagerTemplateProvider::GetHeroManager();
 	this->minions_ = ManagerTemplateProvider::GetMinionManager();
+	this->turrets_ = ManagerTemplateProvider::GetTurretManager();
+	this->inhibitors_ = ManagerTemplateProvider::GetInhibitorManager();
+	this->buildings_ = ManagerTemplateProvider::GetBuildingManager();
+	this->shops_ = ManagerTemplateProvider::GetShopManager();
+
 	this->player_ = memory::Accessor::AccessModuleAddress<Hero*>(Offsets::LocalPlayer);
 }
 

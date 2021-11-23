@@ -2,13 +2,8 @@
 #include <windef.h>
 #include <stdint.h>
 #include <core/memory/member.h>
+#include <core/geometry/vector.h>
 
-struct Vector3
-{
-	float x;
-	float y;
-	float z;
-};
 namespace game::gameObjects {
 
 	class GameObject

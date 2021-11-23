@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -111,7 +111,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;CORE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)sources;D:\dev\vault7\sources\core\game\game_objects;$(SolutionDir)extern</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)sources;D:\dev\vault7\sources\core\game\game_objects;$(SolutionDir)extern;$(SolutionDir)extern/zydis/;$(SolutionDir)extern/zydis/Zydis/src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -166,9 +166,11 @@
     <ClInclude Include="game\game_objects\attackable_units\turret.h" />
     <ClInclude Include="game\Offsets.h" />
     <ClInclude Include="game\world\world.h" />
+    <ClInclude Include="geometry\vector.h" />
     <ClInclude Include="hooking\callbacks.h" />
     <ClInclude Include="hooking\hooking_service.h" />
     <ClInclude Include="hooking\kiero.h" />
+    <ClInclude Include="hooking\makesyscall.h" />
     <ClInclude Include="utilities.h" />
     <ClInclude Include="locator.h" />
     <ClInclude Include="game\game_objects\game_object.h" />
@@ -179,7 +181,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="entry\dllmain.cpp" />
-    <ClCompile Include="game\functions\function_accessor.cpp" />
     <ClCompile Include="game\game_objects\attackable_units\AttackableUnit.cpp" />
     <ClCompile Include="game\game_objects\attackable_units\building.cpp" />
     <ClCompile Include="game\game_objects\attackable_units\inhibitor.cpp" />

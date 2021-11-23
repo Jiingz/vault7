@@ -8,6 +8,9 @@
 int main()
 {
 	core::Locator::GetHookingService()->HookPresent();
+	DWORD* chatInstance = (DWORD*)((DWORD)GetModuleHandle(NULL) + Offsets::ChatInstance);
+	 core::Locator::GetFunctionAccessor()->PrintChat(*chatInstance,"Vault7 Loaded!", 0xFFFFFF);
+	
 	return 0;
 }
 
