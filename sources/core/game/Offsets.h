@@ -30,8 +30,8 @@ namespace Offsets
 		OnNewPath = 0x277B80, //UNUSED			// 83 EC 18 56 8B 74 24 20 8B CE 57
 		PrintChat = 0x589770,					// INSIDE PRINTCHAT FUNC: 8B 4D E0 42    ||  CALL OF PRINTCHAT: E8 ? ? ? ? B8 ? ? ? ? C7 04 
 		//IsNotWall = 0x8e64f0,
-		IssueClick = 0x5FA0E0, // inside function: 75 18 8B 0D ? ? ? ? 57
-		IssueSpell = 0x5E1C00, // 53 8B 1D ?? ?? ?? ?? 55 56 57 8B F9 85
+		NewIssueOrder = 0x5FA0E0, // inside function: 75 18 8B 0D ? ? ? ? 57
+		NewCastSpell = 0x5E1C00, // 53 8B 1D ?? ?? ?? ?? 55 56 57 8B F9 85
 
 		//Healthbar pos
 		v15a1 = 0xC,														//updated 11.23

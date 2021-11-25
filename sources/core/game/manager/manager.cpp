@@ -1,5 +1,6 @@
 #include <core/game/manager/manager.h>
 #include <core/game/Offsets.h>
+#include <core/locator.h>
 
 using namespace game;
 

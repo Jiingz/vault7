@@ -8,9 +8,12 @@
 int main()
 {
 	core::Locator::GetHookingService()->HookPresent();
-	DWORD* chatInstance = (DWORD*)((DWORD)GetModuleHandle(NULL) + Offsets::ChatInstance);
-	 core::Locator::GetFunctionAccessor()->PrintChat(*chatInstance,"Vault7 Loaded!", 0xFFFFFF);
-	
+	core::Locator::GetWorld()->GetHeroes();
+
+	core::DebugInfo dbg_info_;
+	dbg_info_.addr_ = 12345;
+	dbg_info_.message_ = "Debugger works! I am a shared structure";
+	core::Locator::GetDebugger()->WriteDebugMessage(&dbg_info_);
 	return 0;
 }
 

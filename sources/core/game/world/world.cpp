@@ -1,4 +1,5 @@
 #include <core/game/world/world.h>
+#include <core/locator.h>
 
 using namespace game;
 
@@ -13,6 +14,8 @@ World::World()
 	this->shops_ = ManagerTemplateProvider::GetShopManager();
 
 	this->player_ = memory::Accessor::AccessModuleAddress<Hero*>(Offsets::LocalPlayer);
+
+	//core::Locator::GetDebugger()->WriteDebugMessage(TEXT("World: World Initialized."));
 }
 
 ManagerTemplateAccessor<Hero> game::World::GetHeroes() const
