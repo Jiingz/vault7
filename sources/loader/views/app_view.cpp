@@ -43,11 +43,21 @@ void AppView::Render()
             this->LoadModules();
         }
 
-        for (auto it = modules_->Begin(); it != modules_->End();)
+        std::vector<ResourceHolder<sdk::ModuleBase>::Iterator> removed;
+
+        for (auto it = modules_->Begin(); it != modules_->End(); ++it)
         {
-            if (!this->RenderModule(it))
+            // Returns true if the module was removed
+            if (this->RenderModule(it))
             {
-                ++it;
+                removed.push_back(it);
+            }
+        }
+
+        if (!removed.empty())
+        {
+            for (auto it : removed) {
+                this->RemoveModule(it);
             }
         }
 
@@ -137,7 +147,7 @@ bool AppView::RenderModule(ResourceHolder<sdk::ModuleBase>::Iterator it)
 
     if (ImGui::Button("Remove"))
     {
-        this->RemoveModule(it++);
+        // this->RemoveModule(it++);
         removed = true;
     }
 
@@ -211,7 +221,7 @@ void AppView::LoadModules()
 
                         std::filesystem::path path = module_display_name;
 
-                        auto module = ModuleLoader().LoadModule(path.wstring());
+                        auto module = ModuleLoader::LoadModule(path.wstring());
                         
                         if (!module)
                         {

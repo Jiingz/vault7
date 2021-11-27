@@ -8,7 +8,7 @@ using namespace sdk;
 
 
 
-std::unique_ptr<ModuleBase> ModuleLoader::LoadModule(const std::wstring_view path)
+std::unique_ptr<ModuleBase> ModuleLoader::LoadModule(const std::wstring& path)
 {
     HMODULE module_handle = LoadLibrary(path.data());
 

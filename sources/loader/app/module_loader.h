@@ -10,7 +10,7 @@ namespace loader
     class ModuleLoader
     {
     public:
-        static std::unique_ptr<sdk::ModuleBase> LoadModule(const std::wstring_view path);
+        static std::unique_ptr<sdk::ModuleBase> LoadModule(const std::wstring& path);
 
     private:
 
