@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="champion.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="metadata.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -27,11 +24,14 @@
     <ClInclude Include="exports.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="nativescript.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="game\unit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="champion.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="module.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

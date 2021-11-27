@@ -77,7 +77,7 @@ bool AppView::RenderModule(ResourceHolder<sdk::ModuleBase>::Iterator it)
     bool removed = false;
 
     const auto module_filename = it->first;
-    const auto info = it->second->GetExportInfo();
+    const auto info = it->second->GetModuleInfo();
 
     std::string child_name;
     child_name.resize(module_filename.size());

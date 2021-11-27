@@ -7,20 +7,19 @@
 
 namespace sdk
 {
-    struct IChampion;
+    struct INativeScript;
 
-
-    struct ChampionFeature
+    struct ScriptFeature
     {
         std::string name;
         std::string friendly_name;
         std::string description;
     };
 
-    struct ChampionRegistration
+    struct ScriptRegistration
     {
         std::string name;
-        std::function<std::unique_ptr<IChampion>()> factory;
+        std::function<std::unique_ptr<INativeScript>()> factory;
     };
 
     struct ModuleExportInfo

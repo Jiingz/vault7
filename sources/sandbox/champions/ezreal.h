@@ -1,13 +1,13 @@
 #pragma once
 
-#include <sdk/champion.h>
+#include <sdk/nativescript.h>
 
 #include <vector>
 
 
 namespace sandbox::champions
 {
-    class Ezreal : public sdk::IChampion
+    class Ezreal : public sdk::NativeScript<sdk::ExecutionLayer::Champion>
     {
     public:
         void OnInitialize() final override;

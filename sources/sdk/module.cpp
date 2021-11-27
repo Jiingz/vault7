@@ -10,19 +10,19 @@ ModuleBase::ModuleBase(std::string_view name, std::string_view version, std::str
     info_.author = author;
 }
 
-const std::vector<std::string> ModuleBase::GetSupportedChampions() const
+const std::vector<std::string> ModuleBase::GetSupportedScriptNames() const
 {
-    std::vector<std::string> champion_names;
+    std::vector<std::string> script_names;
 
-    for (auto it = registered_champs_.begin(); it != registered_champs_.end(); ++it) {
-        champion_names.push_back(it->second.name);
+    for (auto it = registered_scripts_.begin(); it != registered_scripts_.end(); ++it) {
+        script_names.push_back(it->second.name);
     }
 
-    return champion_names;
+    return script_names;
 }
 
 
-const ModuleExportInfo& ModuleBase::GetExportInfo() const
+const ModuleExportInfo& ModuleBase::GetModuleInfo() const
 {
     return info_;
 }

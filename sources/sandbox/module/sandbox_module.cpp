@@ -14,7 +14,7 @@ SandboxModule::SandboxModule()
 
 void SandboxModule::OnRegistration()
 {
-    this->RegisterChampion<Ezreal>("Ezreal");
+    this->RegisterScript<Ezreal>("Ezreal");
 }
 
 
