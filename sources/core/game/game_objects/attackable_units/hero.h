@@ -4,5 +4,7 @@
 class Hero : public AttackableUnit
 {
 public:
-
+	void IssueOrder(AttackableUnit* target);
+	void IssueOrder(Vector3* move_pos);
 };
+

@@ -160,6 +160,7 @@
     <ClInclude Include="event\event_bus.h" />
     <ClInclude Include="game\functions\function.h" />
     <ClInclude Include="game\functions\function_accessor.h" />
+    <ClInclude Include="game\game_components\game_component.h" />
     <ClInclude Include="game\game_objects\attackable_units\AttackableUnit.h" />
     <ClInclude Include="game\game_objects\attackable_units\building.h" />
     <ClInclude Include="game\game_objects\attackable_units\inhibitor.h" />
@@ -167,7 +168,6 @@
     <ClInclude Include="game\game_objects\attackable_units\minion.h" />
     <ClInclude Include="game\game_objects\attackable_units\turret.h" />
     <ClInclude Include="game\Offsets.h" />
-    <ClInclude Include="game\world\engine.h" />
     <ClInclude Include="game\world\world.h" />
     <ClInclude Include="drawings\geometry\vector.h" />
     <ClInclude Include="hooking\callbacks.h" />
@@ -183,7 +183,6 @@
     <ClInclude Include="libs\ImGui\imstb_rectpack.h" />
     <ClInclude Include="libs\ImGui\imstb_textedit.h" />
     <ClInclude Include="libs\ImGui\imstb_truetype.h" />
-    <ClInclude Include="memory\debugger.h" />
     <ClInclude Include="utilities.h" />
     <ClInclude Include="locator.h" />
     <ClInclude Include="game\game_objects\game_object.h" />
@@ -195,13 +194,13 @@
   <ItemGroup>
     <ClCompile Include="drawings\draw_factory.cpp" />
     <ClCompile Include="entry\dllmain.cpp" />
+    <ClCompile Include="game\game_components\game_component.cpp" />
     <ClCompile Include="game\game_objects\attackable_units\AttackableUnit.cpp" />
     <ClCompile Include="game\game_objects\attackable_units\building.cpp" />
     <ClCompile Include="game\game_objects\attackable_units\inhibitor.cpp" />
     <ClCompile Include="game\game_objects\game_object.cpp" />
     <ClCompile Include="game\game_objects\attackable_units\hero.cpp" />
     <ClCompile Include="game\game_objects\attackable_units\minion.cpp" />
-    <ClCompile Include="game\world\engine.cpp" />
     <ClCompile Include="game\world\world.cpp" />
     <ClCompile Include="hooking\callbacks.cpp" />
     <ClCompile Include="hooking\hooking_service.cpp" />
@@ -217,7 +216,6 @@
     <ClCompile Include="locator.cpp" />
     <ClCompile Include="game\manager\manager.cpp" />
     <ClCompile Include="game\game_objects\attackable_units\turret.cpp" />
-    <ClCompile Include="memory\debugger.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

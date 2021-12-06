@@ -1,3 +1,5 @@
+#pragma warning(disable : 4996)
+
 #include <process.h>
 
 #include <core/game/manager/manager.h>
@@ -10,10 +12,12 @@ int main()
 	core::Locator::GetHookingService()->HookPresent();
 	core::Locator::GetWorld()->GetHeroes();
 
-	core::DebugInfo dbg_info_;
-	dbg_info_.addr_ = 12345;
-	dbg_info_.message_ = "Debugger works! I am a shared structure";
-	core::Locator::GetDebugger()->WriteDebugMessage(&dbg_info_);
+	core::Locator::GetFunctionAccessor()->PrintChat(*core::Locator::GetGameComponents()->GetChatInstance(), "TEST", 0xFFFFFF);
+
+	LPVOID addr = LPVOID((DWORD)GetModuleHandle(NULL) + 0x509BD0);
+	DWORD old;
+	VirtualProtect(addr, 0x59, PAGE_READWRITE, &old);
+	MessageBoxA(NULL, std::to_string(GetLastError()).c_str(), "TEST", NULL);
 	return 0;
 }
 

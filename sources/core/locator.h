@@ -7,9 +7,7 @@
 #include <memory>
 #include <core/game/functions/function_accessor.h>
 #include <core/drawings/draw_factory.h>
-#include <core/memory/debugger.h>
-#include <core/game/world/engine.h>
-
+#include <core/game/game_components/game_component.h>
 
 namespace core
 {
@@ -22,8 +20,7 @@ namespace core
 		static HookingService* GetHookingService();
 		static game::FunctionAccessor* GetFunctionAccessor();
 		static DrawFactory* GetDrawFactory();
-		static Debugger* GetDebugger();
-		static game::Engine* GetEngine();
+		static game::GameComponent* GetGameComponents();
 
 		//Singletons
 	private:
@@ -32,7 +29,6 @@ namespace core
 		static std::unique_ptr<HookingService> s_hooking_service_;
 		static std::unique_ptr<game::FunctionAccessor> s_function_accessor_;
 		static std::unique_ptr<DrawFactory> s_draw_factory_;
-		static std::unique_ptr<Debugger> s_debugger_;
-		static std::unique_ptr<game::Engine> s_engine_;
+		static std::unique_ptr<game::GameComponent> s_game_component_;
 	};
 }

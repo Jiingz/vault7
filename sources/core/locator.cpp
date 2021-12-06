@@ -9,8 +9,7 @@ std::unique_ptr<game::World> Locator::s_world_;
 std::unique_ptr<HookingService> Locator::s_hooking_service_;
 std::unique_ptr<FunctionAccessor> Locator::s_function_accessor_;
 std::unique_ptr<DrawFactory> Locator::s_draw_factory_;
-std::unique_ptr<Debugger> Locator::s_debugger_;
-std::unique_ptr<Engine> Locator::s_engine_;
+std::unique_ptr<GameComponent> Locator::s_game_component_;
 
 EventBus* Locator::GetEventBus()
 {
@@ -57,20 +56,12 @@ DrawFactory* Locator::GetDrawFactory()
 	return s_draw_factory_.get();
 }
 
-Debugger* Locator::GetDebugger()
-{
-	if (!s_debugger_)
-	{
-		s_debugger_ = std::make_unique<Debugger>();
-	}
-	return s_debugger_.get();
-}
 
-Engine* core::Locator::GetEngine()
+GameComponent* Locator::GetGameComponents()
 {
-	if (!s_engine_)
+	if (!s_game_component_)
 	{
-		s_engine_ = std::make_unique<Engine>();
+		s_game_component_ = std::make_unique<GameComponent>();
 	}
-	return s_engine_.get();
+	return s_game_component_.get();
 }

@@ -1,26 +1,21 @@
 // DebugConsole.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 #include <windows.h>
-#include <stdio.h>
-#include <conio.h>
-#include <string>
 #include <tchar.h>
+#include <string>
+
 #pragma comment(lib, "user32.lib")
+#pragma warning(disable : 4996)
 
 #define BUF_SIZE 256
 TCHAR szName[] = TEXT("Global\\MyFileMappingObject");
 
-struct DebugInfo
-{
-public:
-	DWORD addr_;
-	std::string message_;
-};
-
 int main()
 {
 	HANDLE hMapFile;
-	DebugInfo* dbg_info;
+
+	LPCTSTR debug_message;
+	LPCTSTR last_message;
 
 	while (true)
 	{
@@ -29,15 +24,16 @@ int main()
 			FALSE,                 // do not inherit the name
 			szName);               // name of mapping object
 
-		dbg_info = (DebugInfo*)MapViewOfFile(hMapFile, // handle to map object
+		debug_message = (LPTSTR)MapViewOfFile(hMapFile, // handle to map object
 			FILE_MAP_ALL_ACCESS,  // read/write permission
 			0,
 			0,
 			0);
 
-		if (dbg_info)
+		if (debug_message)
 		{
-			_tprintf(TEXT("%s \n"), dbg_info->message_.c_str());
+			_tprintf(TEXT("%s \n"), debug_message);
+			ZeroMemory((PVOID)debug_message, sizeof(debug_message));
 		}
 	}
 
