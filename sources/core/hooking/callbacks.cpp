@@ -8,5 +8,5 @@ HRESULT __stdcall core::Callbacks::HookedPresent(IDXGISwapChain* swap_chain, UIN
 	if (!DrawFactory::initialized_)
 		core::Locator::GetDrawFactory()->InitializeRenderer(swap_chain);
 
-	return Locator::GetHookingService()->GetOriginalPresent()(swap_chain, sync_interval, flags);
+		return Locator::GetHookingService()->GetOriginalPresent()(swap_chain, sync_interval, flags);
 }

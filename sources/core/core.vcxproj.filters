@@ -120,10 +120,7 @@
     <ClInclude Include="drawings\renderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="memory\debugger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\world\engine.h">
+    <ClInclude Include="game\game_components\game_component.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -197,10 +194,7 @@
     <ClCompile Include="libs\ImGui\imgui_widgets.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="memory\debugger.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="game\world\engine.cpp">
+    <ClCompile Include="game\game_components\game_component.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
