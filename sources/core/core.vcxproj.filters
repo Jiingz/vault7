@@ -123,6 +123,15 @@
     <ClInclude Include="game\game_components\game_component.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="features\feature_controller.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="features\orbwalker.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="features\feature_interface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="game\manager\manager.cpp">
@@ -195,6 +204,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="game\game_components\game_component.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="features\feature_controller.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="features\orbwalker.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

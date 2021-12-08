@@ -11,13 +11,7 @@ int main()
 {
 	core::Locator::GetHookingService()->HookPresent();
 	core::Locator::GetWorld()->GetHeroes();
-
-	core::Locator::GetFunctionAccessor()->PrintChat(*core::Locator::GetGameComponents()->GetChatInstance(), "TEST", 0xFFFFFF);
-
-	LPVOID addr = LPVOID((DWORD)GetModuleHandle(NULL) + 0x509BD0);
-	DWORD old;
-	VirtualProtect(addr, 0x59, PAGE_READWRITE, &old);
-	MessageBoxA(NULL, std::to_string(GetLastError()).c_str(), "TEST", NULL);
+	core::Locator::GetFunctionAccessor()->PrintChat(*core::Locator::GetGameComponents()->GetChatInstance(), "Invictus++ Loaded", 0xFFFFFF);
 	return 0;
 }
 

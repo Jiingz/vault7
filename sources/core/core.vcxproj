@@ -158,6 +158,9 @@
     <ClInclude Include="drawings\renderer.h" />
     <ClInclude Include="event\events.h" />
     <ClInclude Include="event\event_bus.h" />
+    <ClInclude Include="features\feature_controller.h" />
+    <ClInclude Include="features\feature_interface.h" />
+    <ClInclude Include="features\orbwalker.h" />
     <ClInclude Include="game\functions\function.h" />
     <ClInclude Include="game\functions\function_accessor.h" />
     <ClInclude Include="game\game_components\game_component.h" />
@@ -194,6 +197,8 @@
   <ItemGroup>
     <ClCompile Include="drawings\draw_factory.cpp" />
     <ClCompile Include="entry\dllmain.cpp" />
+    <ClCompile Include="features\feature_controller.cpp" />
+    <ClCompile Include="features\orbwalker.cpp" />
     <ClCompile Include="game\game_components\game_component.cpp" />
     <ClCompile Include="game\game_objects\attackable_units\AttackableUnit.cpp" />
     <ClCompile Include="game\game_objects\attackable_units\building.cpp" />

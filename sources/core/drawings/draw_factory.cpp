@@ -4,21 +4,20 @@ using namespace core;
 
 bool DrawFactory::initialized_;
 
+//Initializes a unique_ptr to the renderer struct
 DrawFactory::DrawFactory()
 {
 	this->renderer_ = std::make_unique<Renderer>();
 }
 
-void core::DrawFactory::InitializeRenderer(IDXGISwapChain* swap_chain)
+void DrawFactory::InitializeRenderer(IDXGISwapChain* swap_chain)
 {
 	if (this->renderer_->swap_chain_)
 	{
-		//core::Locator::GetDebugger()->WriteDebugMessage(TEXT("DrawFactory: Renderer has been initialized already."));
 		return;
 	}
 	if (!SUCCEEDED(swap_chain->GetDevice(__uuidof(ID3D11Device), (void**)&this->renderer_->device_)))
 	{
-		//core::Locator::GetDebugger()->WriteDebugMessage(TEXT("DrawFactory: Invalid swapchain captured."));
 		return;
 	}
 	this->renderer_->swap_chain_ = swap_chain;
@@ -28,6 +27,7 @@ void core::DrawFactory::InitializeRenderer(IDXGISwapChain* swap_chain)
 	initialized_ = true;
 }
 
+//Sets the renderer context (initializes swap chain, device etc)
 void DrawFactory::SetContext()
 {
 	this->renderer_->device_->GetImmediateContext(&this->renderer_->context_);
@@ -41,7 +41,7 @@ void DrawFactory::SetContext()
 	this->renderer_->wnd_proc_ = (WNDPROC)SetWindowLongPtr(this->renderer_->window_, GWLP_WNDPROC, (LONG_PTR)this->renderer_->wnd_proc_);
 }
 
-
+//Creates ImGui Context and initiates all needed sources.
 void core::DrawFactory::SetImGui()
 {
 	ImGui::CreateContext();

@@ -28,7 +28,7 @@ World* Locator::GetWorld()
 	}
 	return s_world_.get();
 }
-
+	
 HookingService* Locator::GetHookingService()
 {
 	if (!s_hooking_service_)
