@@ -1,5 +1,5 @@
 #pragma warning(disable : 4996)
-
+#define DEFINE_RVA(address) ((DWORD)GetModuleHandle(NULL) + (DWORD)address)
 #include <process.h>
 
 #include <core/game/manager/manager.h>

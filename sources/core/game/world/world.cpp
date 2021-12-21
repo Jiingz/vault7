@@ -13,7 +13,7 @@ World::World()
 	this->buildings_ = ManagerTemplateProvider::GetBuildingManager();
 	this->shops_ = ManagerTemplateProvider::GetShopManager();
 
-	this->player_ = memory::Accessor::AccessModuleAddress<Hero*>(Offsets::LocalPlayer);
+	this->player_ = memory::Accessor::AccessModuleAddress<Player*>(Offsets::LocalPlayer);
 }
 
 ManagerTemplateAccessor<Hero> game::World::GetHeroes() const
@@ -46,7 +46,7 @@ ManagerTemplateAccessor<GameObject> game::World::GetShops() const
 	return this->shops_;
 }
 
-Hero* World::GetPlayer() const
+Player* World::GetPlayer() const
 {
 	return this->player_;
 }

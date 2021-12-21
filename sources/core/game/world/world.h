@@ -2,6 +2,7 @@
 #include <memory>
 
 #include <core/game/manager/manager.h>
+#include <core/game/game_objects/attackable_units/player.h>
 #include <core/game/Offsets.h>
 
 
@@ -20,7 +21,7 @@ namespace game
 		ManagerTemplateAccessor<Building> GetBuildings() const;
 		ManagerTemplateAccessor<GameObject> GetShops() const;
 
-		Hero* GetPlayer() const;
+		Player* GetPlayer() const;
 
 	private:
 		ManagerTemplateAccessor<AttackableUnit> attackable_units_;
@@ -31,6 +32,6 @@ namespace game
 		ManagerTemplateAccessor<Building> buildings_;
 		ManagerTemplateAccessor<GameObject> shops_;
 
-		Hero* player_;
+		Player* player_;
 	};
 }

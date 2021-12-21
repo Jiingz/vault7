@@ -169,6 +169,7 @@
     <ClInclude Include="game\game_objects\attackable_units\inhibitor.h" />
     <ClInclude Include="game\game_objects\attackable_units\hero.h" />
     <ClInclude Include="game\game_objects\attackable_units\minion.h" />
+    <ClInclude Include="game\game_objects\attackable_units\player.h" />
     <ClInclude Include="game\game_objects\attackable_units\turret.h" />
     <ClInclude Include="game\Offsets.h" />
     <ClInclude Include="game\world\world.h" />
@@ -203,6 +204,7 @@
     <ClCompile Include="game\game_objects\attackable_units\AttackableUnit.cpp" />
     <ClCompile Include="game\game_objects\attackable_units\building.cpp" />
     <ClCompile Include="game\game_objects\attackable_units\inhibitor.cpp" />
+    <ClCompile Include="game\game_objects\attackable_units\player.cpp" />
     <ClCompile Include="game\game_objects\game_object.cpp" />
     <ClCompile Include="game\game_objects\attackable_units\hero.cpp" />
     <ClCompile Include="game\game_objects\attackable_units\minion.cpp" />

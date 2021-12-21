@@ -7,7 +7,7 @@ namespace game
 	{
 	public:
 		// int HUDInputLogic, int State, int IsAttack, int isAttackCommand, int screen_x, int screen_y, char unknown1, char unknown2, char unknown3
-		Function<CallingConvention::Thiscall, int, Offsets::NewIssueOrder, int, int, int, int, int, int, char, char, char> NewIssueOrder;
+		Function<CallingConvention::Thiscall, int, Offsets::NewIssueOrder, int, int, int, int, int, int, int, int, int> NewIssueOrder;
 
 		// int HudSpellLogic, int Slot, int always4, int State
 		Function<CallingConvention::Thiscall, int, Offsets::NewCastSpell, int, int, int, int> NewCastSpell;
