@@ -1,7 +1,7 @@
 #pragma once
 #include <attackable_units/AttackableUnit.h>
 
-namespace game::gameObjects
+namespace game
 {
 	class Building : public AttackableUnit
 	{

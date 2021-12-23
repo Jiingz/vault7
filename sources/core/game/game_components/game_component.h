@@ -9,10 +9,9 @@ namespace game
 	{
 	public:
 		GameComponent();
-		DWORD GetHudInstance();
-		DWORD* GetChatInstance();
 
 		Vector3 GetMouseWorldPos();
+		void PrintChat(const char* message);
 
 	private:
 		DWORD* chat_instance_;

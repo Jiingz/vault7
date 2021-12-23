@@ -1,18 +1,19 @@
 #pragma once
+#include <core/features/helper/target_selector.h>
 
-namespace Features
+namespace feature
 {
 	class IFeature
 	{
 	protected:
-		/// <summary>
-		/// Initializes the feature, called once on start.
-		/// </summary>
+
+		//called on module load
 		virtual void Initialize() = 0;
 
-		/// <summary>
-		/// Called every Frame.
-		/// </summary>
+		//called every frame in present hook
 		virtual void OnTick() = 0;
+
+		//returns the best target. If not overwritten, it returns the lowestHP target in auto attack range.
+		virtual game::Hero* GetBestTarget() { return helper::TargetSelector::GetBestTarget(); };
 	};
 }

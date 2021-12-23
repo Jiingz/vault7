@@ -2,8 +2,11 @@
 
 #include <attackable_units/AttackableUnit.h>
 
-
-class Minion : public AttackableUnit
+namespace game
 {
+	class Minion : public AttackableUnit
+	{
 
-};
+	};
+
+}

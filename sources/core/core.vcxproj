@@ -160,6 +160,7 @@
     <ClInclude Include="event\event_bus.h" />
     <ClInclude Include="features\feature_controller.h" />
     <ClInclude Include="features\feature_interface.h" />
+    <ClInclude Include="features\helper\target_selector.h" />
     <ClInclude Include="features\orbwalker.h" />
     <ClInclude Include="game\functions\function.h" />
     <ClInclude Include="game\functions\function_accessor.h" />
@@ -171,6 +172,7 @@
     <ClInclude Include="game\game_objects\attackable_units\minion.h" />
     <ClInclude Include="game\game_objects\attackable_units\player.h" />
     <ClInclude Include="game\game_objects\attackable_units\turret.h" />
+    <ClInclude Include="game\game_objects\enums.h" />
     <ClInclude Include="game\Offsets.h" />
     <ClInclude Include="game\world\world.h" />
     <ClInclude Include="drawings\geometry\vector.h" />
@@ -197,8 +199,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="drawings\draw_factory.cpp" />
-    <ClCompile Include="entry\dllmain.cpp" />
+    <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="features\feature_controller.cpp" />
+    <ClCompile Include="features\helper\target_selector.cpp" />
     <ClCompile Include="features\orbwalker.cpp" />
     <ClCompile Include="game\game_components\game_component.cpp" />
     <ClCompile Include="game\game_objects\attackable_units\AttackableUnit.cpp" />

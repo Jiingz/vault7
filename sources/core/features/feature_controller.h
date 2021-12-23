@@ -1,13 +1,17 @@
 #pragma once
+#include <memory>
+#include <core/features/orbwalker.h>
 
-namespace Features
+namespace feature
 {
+	//controller class for all features
 	class FeatureController
 	{
-		//provide raw pointers through smart pointers to all features
+	public:
+		static void LoadFeatures();
+		static Orbwalker* GetOrbwalker();
 
 	private:
-		//Singletons of features
-		// std::unique_ptr<Orbwalker> orbwalker_; 
+		static std::unique_ptr<Orbwalker> s_orbwalker_;
 	};
 }

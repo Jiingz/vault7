@@ -1,9 +1,9 @@
 #pragma once
 #include <attackable_units/Building.h>
 
-namespace game::gameObjects
+namespace game
 {
-	class Inhibitor : public game::gameObjects::Building
+	class Inhibitor : public Building
 	{
 
 	};

@@ -34,6 +34,5 @@ namespace memory {
 	{
 		TType value;
 	};
-
 }
 

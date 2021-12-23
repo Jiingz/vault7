@@ -1,19 +1,26 @@
 #pragma warning(disable : 4996)
-#define DEFINE_RVA(address) ((DWORD)GetModuleHandle(NULL) + (DWORD)address)
-#include <process.h>
 
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
+
+#include <process.h>
 #include <core/game/manager/manager.h>
-#include <core/event/events.h>
 #include <core/locator.h>
-#include <core/game/functions/function_accessor.h>
+#include <core/features/feature_controller.h>
 
 int main()
 {
+	//Hook the present
 	core::Locator::GetHookingService()->HookPresent();
-	core::Locator::GetWorld()->GetHeroes();
-	core::Locator::GetFunctionAccessor()->PrintChat(*core::Locator::GetGameComponents()->GetChatInstance(), "Invictus++ Loaded", 0xFFFFFF);
+	//Load all modules
+	feature::FeatureController::LoadFeatures();
+	//Print info that Invictus has been loaded
+	core::Locator::GetGameComponents()->PrintChat("Invictus++ Loaded");
 	return 0;
 }
+
+
+
 
 bool APIENTRY DllMain(HMODULE hModule,
 	DWORD  ul_reason_for_call,

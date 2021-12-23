@@ -2,7 +2,11 @@
 
 #include <attackable_units/building.h>
 
-class Turret : public game::gameObjects::Building
+namespace game
 {
+	class Turret : public Building
+	{
 
-};
+	};
+}
+

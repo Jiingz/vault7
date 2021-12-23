@@ -44,4 +44,13 @@ namespace game
 		DefinedFunction func_;
 	};
 
+
+	template< typename Function >
+	static Function CallVirtual(PVOID Base, ULONG Index)
+	{
+		PULONG* VTablePointer = (PULONG*)Base;
+		PULONG VTableFunctionBase = *VTablePointer;
+		ULONG dwAddress = VTableFunctionBase[Index];
+		return (Function)(dwAddress);
+	}
 }

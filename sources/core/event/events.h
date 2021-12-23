@@ -3,13 +3,18 @@
 
 namespace event
 {
-    struct BasicAttacEvent {
-        // ActiveProcessSpell* attack;
-        // GameObject* caster;
-    };
+	struct OnTick
+	{
+		//Empty atm
+	};
 
-    struct RecallEvent {
-        // float recall_time;
-        // GameObject* caster;
-    };
+	struct BasicAttacEvent {
+		// ActiveProcessSpell* attack;
+		// GameObject* caster;
+	};
+
+	struct RecallEvent {
+		// float recall_time;
+		// GameObject* caster;
+	};
 }

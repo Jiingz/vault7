@@ -135,12 +135,18 @@
     <ClInclude Include="game\game_objects\attackable_units\player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="features\helper\target_selector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="game\game_objects\enums.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="game\manager\manager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="entry\dllmain.cpp">
+    <ClCompile Include="dllmain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="locator.cpp">
@@ -216,6 +222,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="game\game_objects\attackable_units\player.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="features\helper\target_selector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

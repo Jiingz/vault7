@@ -1,9 +1,13 @@
 #pragma once
 #include <attackable_units/AttackableUnit.h>
 
-class Hero : public AttackableUnit
+namespace game
 {
-public:
-	bool ForceAttack();
-};
+	class Hero : public game::AttackableUnit
+	{
+	public:
+		bool ForceAttack();
+	};
 
+
+}
