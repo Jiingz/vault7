@@ -141,6 +141,15 @@
     <ClInclude Include="game\game_objects\enums.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="mouse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="features\humanizer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="game\game_objects\structures\ai_manager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="game\manager\manager.cpp">
@@ -174,9 +183,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="game\game_objects\attackable_units\AttackableUnit.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="hooking\kiero.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="hooking\callbacks.cpp">
@@ -225,6 +231,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="features\helper\target_selector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hooking\kiero.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -4,6 +4,13 @@
 #define oNtProtectVirtualMemory_Stub_1 0x3D9FF4
 #define oNTQueryVirtualMemory_Stub 0x3DA1B0
 
+#define DEFINE_RVA(address) ((DWORD)GetModuleHandle(NULL) + (DWORD)address)
+
+#define STR_MERGE_IMPL(x, y)				x##y
+#define STR_MERGE(x,y)						STR_MERGE_IMPL(x,y)
+#define MAKE_PAD(size)						BYTE STR_MERGE(pad_, __COUNTER__) [ size ]
+#define DEFINE_MEMBER_0(x, y)				x
+#define DEFINE_MEMBER_N(x,offset)			struct { MAKE_PAD(offset); x; }
 
 namespace Globals
 {
@@ -84,6 +91,7 @@ namespace Offsets
 		HudInstance = 0x186CD9C, // 8B 2D ? ? ? ? 8B 75
 		LocalPlayer = 0x3109D4C, // A1 ? ? ? ? 85 C0 74 07 05 ? ? ? ? EB 02 33 C0 56
 		BuffManager = 0x21B8, // 8D 8F ? ? ? ? E8 ? ? ? ? 6A 00 50								ecx, [edi + offseth]
+		StaticRenderer = 0x31358D0, // A1 ? ? ? ? F3 0F 10 60 ?		dword_offset
 	};
 
 	enum Chat : DWORD {

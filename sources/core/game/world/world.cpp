@@ -16,6 +16,11 @@ World::World()
 	this->player_ = memory::Accessor::AccessModuleAddress<Player*>(Offsets::LocalPlayer);
 }
 
+ManagerTemplateAccessor<AttackableUnit> game::World::GetAttackableUnits() const
+{
+	return this->attackable_units_;
+}
+
 ManagerTemplateAccessor<Hero> game::World::GetHeroes() const
 {
 	return this->heroes_;

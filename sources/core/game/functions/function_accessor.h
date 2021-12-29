@@ -6,12 +6,13 @@ namespace game
 	struct FunctionAccessor
 	{
 	public:
-		// int HUDInputLogic, int State, int IsAttack, int isAttackCommand, int screen_x, int screen_y, char unknown1, char unknown2, char unknown3
-		Function<CallingConvention::Thiscall, int, Offsets::NewIssueOrder, int, int, int, int, int, int, int, int, int> NewIssueOrder;
+		// int hudInputLogic, int State, int IsAttack, int isAttackCommand, int screen_x, int screen_y, char unknown3
+		Function<CallingConvention::Thiscall, int, Offsets::NewIssueOrder, DWORD, int, int, int, int, int, char> NewIssueOrder;
 
 		// int HudSpellLogic, int Slot, int always4, int State
 		Function<CallingConvention::Thiscall, int, Offsets::NewCastSpell, int, int, int, int> NewCastSpell;
 
+		// not working for some reason ???
 		Function<CallingConvention::Cdecl, bool, Offsets::WorldToScreen, Vector3*, Vector2*> WorldToScreen;
 
 		// chatInstance | message | color

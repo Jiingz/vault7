@@ -4,12 +4,8 @@
 #include <core/memory/member.h>
 #include <core/drawings/geometry/vector.h>
 #include "enums.h"
-
-#define STR_MERGE_IMPL(x, y)				x##y
-#define STR_MERGE(x,y)						STR_MERGE_IMPL(x,y)
-#define MAKE_PAD(size)						BYTE STR_MERGE(pad_, __COUNTER__) [ size ]
-#define DEFINE_MEMBER_0(x, y)				x
-#define DEFINE_MEMBER_N(x,offset)			struct { MAKE_PAD(offset); x; }
+#include <core/game/game_objects/structures/ai_manager.h>
+#include <core/game/Offsets.h>
 
 namespace game {
 
@@ -66,6 +62,7 @@ namespace game {
 
 	public:
 		float GetPercentageHealth() const;
+		AIManager* GetAIManager();
 	};
 
 }

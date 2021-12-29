@@ -5,12 +5,12 @@ using namespace feature;
 
 std::unique_ptr<Orbwalker> FeatureController::s_orbwalker_;
 
-void feature::FeatureController::LoadFeatures()
+void FeatureController::LoadFeatures()
 {
 	GetOrbwalker()->Initialize();
 }
 
-Orbwalker* feature::FeatureController::GetOrbwalker()
+Orbwalker* FeatureController::GetOrbwalker()
 {
 	if (!s_orbwalker_)
 	{

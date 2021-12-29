@@ -94,13 +94,15 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;CORE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)sources</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)sources;$(ProjectDir)libs;$(ProjectDir)game\game_objects</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
+      <AdditionalDependencies>$(ProjectDir)libs\detours\detours.lib;$(ProjectDir)libs\minhook\lib\libMinHook-x86-v141-mtd.lib</AdditionalDependencies>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -111,7 +113,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;CORE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)sources;D:\dev\vault7\sources\core\game\game_objects;$(SolutionDir)extern;$(SolutionDir)extern/zydis/;$(SolutionDir)extern/zydis/Zydis/src;D:\dev\vault7\extern\ImGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)sources;$(ProjectDir)libs;$(ProjectDir)game\game_objects</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -120,7 +122,8 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalDependencies>$(SolutionDir)extern/minhook/lib/libMinHook-x86-v141-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(ProjectDir)libs\detours\detours.lib;$(ProjectDir)libs\minhook\lib\libMinHook-x86-v141-mtd.lib</AdditionalDependencies>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -161,6 +164,7 @@
     <ClInclude Include="features\feature_controller.h" />
     <ClInclude Include="features\feature_interface.h" />
     <ClInclude Include="features\helper\target_selector.h" />
+    <ClInclude Include="features\humanizer.h" />
     <ClInclude Include="features\orbwalker.h" />
     <ClInclude Include="game\functions\function.h" />
     <ClInclude Include="game\functions\function_accessor.h" />
@@ -173,6 +177,7 @@
     <ClInclude Include="game\game_objects\attackable_units\player.h" />
     <ClInclude Include="game\game_objects\attackable_units\turret.h" />
     <ClInclude Include="game\game_objects\enums.h" />
+    <ClInclude Include="game\game_objects\structures\ai_manager.h" />
     <ClInclude Include="game\Offsets.h" />
     <ClInclude Include="game\world\world.h" />
     <ClInclude Include="drawings\geometry\vector.h" />
@@ -189,6 +194,7 @@
     <ClInclude Include="libs\ImGui\imstb_rectpack.h" />
     <ClInclude Include="libs\ImGui\imstb_textedit.h" />
     <ClInclude Include="libs\ImGui\imstb_truetype.h" />
+    <ClInclude Include="mouse.h" />
     <ClInclude Include="utilities.h" />
     <ClInclude Include="locator.h" />
     <ClInclude Include="game\game_objects\game_object.h" />

@@ -7,9 +7,35 @@
 #include <core/game/manager/manager.h>
 #include <core/locator.h>
 #include <core/features/feature_controller.h>
+#include <core/mouse.h>
+#include <core/libs/Detours/detours.h>
+
+static auto origin = &GetCursorPos;
+
+BOOL WINAPI hGetCursorPos(LPPOINT lpPoint)
+{
+	auto org = origin(lpPoint);
+
+	if (Mouse.enabled)
+	{
+		//	Mouse.mutex.lock();
+		//	lpPoint->x = Mouse.x;
+		//	lpPoint->y = Mouse.y;
+		//	Mouse.mutex.unlock();
+	}
+	return org;
+}
 
 int main()
 {
+	//Hook GetCursorPos using MS Detours Lib
+	DetourRestoreAfterWith();
+	DetourTransactionBegin();
+	DetourUpdateThread(GetCurrentThread());
+	DetourAttach(&(PVOID&)origin, hGetCursorPos);
+	DetourTransactionCommit();
+
+
 	//Hook the present
 	core::Locator::GetHookingService()->HookPresent();
 	//Load all modules

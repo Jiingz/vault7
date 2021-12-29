@@ -1,6 +1,7 @@
 #include <core/hooking/hooking_service.h>
 #include <core/hooking/callbacks.h>
 #include <core/locator.h>
+#include <string>
 
 using namespace core;
 

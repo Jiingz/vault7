@@ -13,11 +13,11 @@ namespace feature
 		//Executes the OnTick routine
 		static void Execute();
 
+		float last_aa_;
+		float last_move_;
+
 	protected:
 		virtual bool CanAttack();
 		virtual bool CanMove();
-
-	private:
-		float last_aa_;
 	};
 }
