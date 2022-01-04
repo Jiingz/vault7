@@ -1,8 +1,24 @@
 #include <core/drawings/draw_factory.h>
 #include <core/locator.h>
+#include <core/libs/xor.h>
 using namespace core;
 
 bool DrawFactory::initialized_;
+
+extern LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
+LRESULT __stdcall HookedWindowProc(const HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
+
+//We need this so clicks get recognized on the ImGui UI.
+LRESULT __stdcall HookedWindowProc(const HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
+
+	//	ONLY CALL IF MENU OPEN
+
+	if (ImGui_ImplWin32_WndProcHandler(hWnd, uMsg, wParam, lParam))
+		return true;
+
+	return CallWindowProc(core::Locator::GetDrawFactory()->GetHookInfo()->wnd_proc_, hWnd, uMsg, wParam, lParam);
+}
+
 
 //Initializes a unique_ptr to the renderer struct
 DrawFactory::DrawFactory()
@@ -38,7 +54,8 @@ void DrawFactory::SetContext()
 	this->renderer_->swap_chain_->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&pBackBuffer);
 	this->renderer_->device_->CreateRenderTargetView(pBackBuffer, NULL, &this->renderer_->target_view_);
 	pBackBuffer->Release();
-	this->renderer_->wnd_proc_ = (WNDPROC)SetWindowLongPtr(this->renderer_->window_, GWLP_WNDPROC, (LONG_PTR)this->renderer_->wnd_proc_);
+	this->renderer_->wnd_proc_ = (WNDPROC)SetWindowLongPtr(this->renderer_->window_, GWLP_WNDPROC, (LONG_PTR)HookedWindowProc);
+
 }
 
 //Creates ImGui Context and initiates all needed sources.
@@ -65,4 +82,31 @@ void core::DrawFactory::SetImGui()
 	//ImGui::GetIO().ConfigFlags = ImGuiConfigFlags_NoMouse;
 	ImGui::GetStyle().AntiAliasedFill = true;
 	ImGui::GetStyle().AntiAliasedLines = true;
+}
+
+void core::DrawFactory::StartRendering()
+{
+	ImGui_ImplDX11_NewFrame();
+	ImGui_ImplWin32_NewFrame();
+	ImGui::NewFrame();
+
+	ImGui::Begin("##overlay", nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoInputs);
+	ImGui::SetWindowPos(ImVec2(0.0f, 0.0f), ImGuiCond_Always);
+	ImGui::SetWindowSize(ImVec2(ImGui::GetIO().DisplaySize.x, ImGui::GetIO().DisplaySize.y), ImGuiCond_Always);
+}
+
+void core::DrawFactory::EndRendering()
+{
+	ImGui::GetForegroundDrawList()->PushClipRectFullScreen();
+
+	ImGui::EndFrame();
+	ImGui::Render();
+
+	this->renderer_->context_->OMSetRenderTargets(1, &this->renderer_->target_view_, NULL);
+	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
+}
+
+Renderer* DrawFactory::GetHookInfo()
+{
+	return this->renderer_.get();
 }

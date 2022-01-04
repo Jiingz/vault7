@@ -1,5 +1,5 @@
 #pragma once
-
+#include <core/hooking/structs.h>
 
 namespace event
 {
@@ -8,13 +8,20 @@ namespace event
 		//Empty atm
 	};
 
-	struct BasicAttacEvent {
-		// ActiveProcessSpell* attack;
-		// GameObject* caster;
+	struct OnBasicAttackArgs {
+		ActiveSpell* active_spell;
+		DWORD sender_index;
+		bool is_special_attack;
 	};
 
 	struct RecallEvent {
 		// float recall_time;
 		// GameObject* caster;
+	};
+
+	struct OnProcessSpellArgs
+	{
+		void* spell_book;
+		ActiveSpell* active_spell;
 	};
 }

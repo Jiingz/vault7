@@ -47,6 +47,11 @@ namespace game
 			return ManagerTemplateIterator<TType>(manager_, manager_->size.value);
 		}
 
+		ManagerTemplateIterator<TType> at(int index)
+		{
+			return ManagerTemplateIterator<TType>(manager_, index);
+		}
+
 	private:
 		ManagerTemplate* manager_;
 	};

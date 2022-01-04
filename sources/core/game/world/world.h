@@ -23,6 +23,9 @@ namespace game
 
 		Player* GetPlayer() const;
 
+		bool WorldToScreen(Vector3* in, Vector2* out);
+
+
 	private:
 		ManagerTemplateAccessor<AttackableUnit> attackable_units_;
 		ManagerTemplateAccessor<Hero>  heroes_;

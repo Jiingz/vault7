@@ -94,8 +94,9 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;CORE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)sources;$(ProjectDir)libs;$(ProjectDir)game\game_objects</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)sources;$(ProjectDir)libs;$(ProjectDir)game\game_objects;$(ProjectDir)libs/zydis;$(ProjectDir)libs/zydis/zydis/src</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -113,8 +114,9 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;CORE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)sources;$(ProjectDir)libs;$(ProjectDir)game\game_objects</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)sources;$(ProjectDir)libs;$(ProjectDir)game\game_objects;$(ProjectDir)libs/zydis;$(ProjectDir)libs/zydis/zydis/src</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -158,6 +160,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="drawings\draw_factory.h" />
+    <ClInclude Include="drawings\menu\menu.h" />
+    <ClInclude Include="drawings\permashow.h" />
     <ClInclude Include="drawings\renderer.h" />
     <ClInclude Include="event\events.h" />
     <ClInclude Include="event\event_bus.h" />
@@ -178,6 +182,8 @@
     <ClInclude Include="game\game_objects\attackable_units\turret.h" />
     <ClInclude Include="game\game_objects\enums.h" />
     <ClInclude Include="game\game_objects\structures\ai_manager.h" />
+    <ClInclude Include="game\game_objects\structures\buff.h" />
+    <ClInclude Include="game\game_objects\structures\buff_manager.h" />
     <ClInclude Include="game\Offsets.h" />
     <ClInclude Include="game\world\world.h" />
     <ClInclude Include="drawings\geometry\vector.h" />
@@ -185,6 +191,10 @@
     <ClInclude Include="hooking\hooking_service.h" />
     <ClInclude Include="hooking\kiero.h" />
     <ClInclude Include="hooking\makesyscall.h" />
+    <ClInclude Include="hooking\structs.h" />
+    <ClInclude Include="hooking\ultimate_hooks.h" />
+    <ClInclude Include="libs\config\config.h" />
+    <ClInclude Include="libs\xor.h" />
     <ClInclude Include="libs\ImGui\imconfig.h" />
     <ClInclude Include="libs\ImGui\imgui.h" />
     <ClInclude Include="libs\ImGui\imgui_impl_dx11.h" />
@@ -194,6 +204,49 @@
     <ClInclude Include="libs\ImGui\imstb_rectpack.h" />
     <ClInclude Include="libs\ImGui\imstb_textedit.h" />
     <ClInclude Include="libs\ImGui\imstb_truetype.h" />
+    <ClInclude Include="libs\Zydis\ZycoreExportConfig.h" />
+    <ClInclude Include="libs\Zydis\Zycore\Allocator.h" />
+    <ClInclude Include="libs\Zydis\Zycore\API\Memory.h" />
+    <ClInclude Include="libs\Zydis\Zycore\API\Synchronization.h" />
+    <ClInclude Include="libs\Zydis\Zycore\API\Terminal.h" />
+    <ClInclude Include="libs\Zydis\Zycore\API\Thread.h" />
+    <ClInclude Include="libs\Zydis\Zycore\ArgParse.h" />
+    <ClInclude Include="libs\Zydis\Zycore\Bitset.h" />
+    <ClInclude Include="libs\Zydis\Zycore\Comparison.h" />
+    <ClInclude Include="libs\Zydis\Zycore\Defines.h" />
+    <ClInclude Include="libs\Zydis\Zycore\Format.h" />
+    <ClInclude Include="libs\Zydis\Zycore\LibC.h" />
+    <ClInclude Include="libs\Zydis\Zycore\List.h" />
+    <ClInclude Include="libs\Zydis\Zycore\Object.h" />
+    <ClInclude Include="libs\Zydis\Zycore\Status.h" />
+    <ClInclude Include="libs\Zydis\Zycore\String.h" />
+    <ClInclude Include="libs\Zydis\Zycore\Types.h" />
+    <ClInclude Include="libs\Zydis\Zycore\Vector.h" />
+    <ClInclude Include="libs\Zydis\Zycore\Zycore.h" />
+    <ClInclude Include="libs\Zydis\ZydisExportConfig.h" />
+    <ClInclude Include="libs\Zydis\Zydis\Decoder.h" />
+    <ClInclude Include="libs\Zydis\Zydis\DecoderTypes.h" />
+    <ClInclude Include="libs\Zydis\Zydis\Formatter.h" />
+    <ClInclude Include="libs\Zydis\Zydis\FormatterBuffer.h" />
+    <ClInclude Include="libs\Zydis\Zydis\Generated\EnumInstructionCategory.h" />
+    <ClInclude Include="libs\Zydis\Zydis\Generated\EnumISAExt.h" />
+    <ClInclude Include="libs\Zydis\Zydis\Generated\EnumISASet.h" />
+    <ClInclude Include="libs\Zydis\Zydis\Generated\EnumMnemonic.h" />
+    <ClInclude Include="libs\Zydis\Zydis\Generated\EnumRegister.h" />
+    <ClInclude Include="libs\Zydis\Zydis\Internal\DecoderData.h" />
+    <ClInclude Include="libs\Zydis\Zydis\Internal\FormatterATT.h" />
+    <ClInclude Include="libs\Zydis\Zydis\Internal\FormatterBase.h" />
+    <ClInclude Include="libs\Zydis\Zydis\Internal\FormatterIntel.h" />
+    <ClInclude Include="libs\Zydis\Zydis\Internal\SharedData.h" />
+    <ClInclude Include="libs\Zydis\Zydis\Internal\String.h" />
+    <ClInclude Include="libs\Zydis\Zydis\MetaInfo.h" />
+    <ClInclude Include="libs\Zydis\Zydis\Mnemonic.h" />
+    <ClInclude Include="libs\Zydis\Zydis\Register.h" />
+    <ClInclude Include="libs\Zydis\Zydis\SharedTypes.h" />
+    <ClInclude Include="libs\Zydis\Zydis\ShortString.h" />
+    <ClInclude Include="libs\Zydis\Zydis\Status.h" />
+    <ClInclude Include="libs\Zydis\Zydis\Utils.h" />
+    <ClInclude Include="libs\Zydis\Zydis\Zydis.h" />
     <ClInclude Include="mouse.h" />
     <ClInclude Include="utilities.h" />
     <ClInclude Include="locator.h" />
@@ -206,6 +259,7 @@
   <ItemGroup>
     <ClCompile Include="drawings\draw_factory.cpp" />
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="drawings\menu\checkbox.cpp" />
     <ClCompile Include="features\feature_controller.cpp" />
     <ClCompile Include="features\helper\target_selector.cpp" />
     <ClCompile Include="features\orbwalker.cpp" />
@@ -217,10 +271,14 @@
     <ClCompile Include="game\game_objects\game_object.cpp" />
     <ClCompile Include="game\game_objects\attackable_units\hero.cpp" />
     <ClCompile Include="game\game_objects\attackable_units\minion.cpp" />
+    <ClCompile Include="game\game_objects\structures\buff.cpp" />
+    <ClCompile Include="game\game_objects\structures\buff_manager.cpp" />
     <ClCompile Include="game\world\world.cpp" />
     <ClCompile Include="hooking\callbacks.cpp" />
     <ClCompile Include="hooking\hooking_service.cpp" />
     <ClCompile Include="hooking\kiero.cpp" />
+    <ClCompile Include="hooking\ultimate_hooks.cpp" />
+    <ClCompile Include="libs\config\config.cpp" />
     <ClCompile Include="libs\ImGui\imgui.cpp" />
     <ClCompile Include="libs\ImGui\imgui_demo.cpp" />
     <ClCompile Include="libs\ImGui\imgui_draw.cpp" />
@@ -229,9 +287,37 @@
     <ClCompile Include="libs\ImGui\imgui_impl_win32.cpp" />
     <ClCompile Include="libs\ImGui\imgui_tables.cpp" />
     <ClCompile Include="libs\ImGui\imgui_widgets.cpp" />
+    <ClCompile Include="libs\Zydis\Zydis\src\Decoder.c" />
+    <ClCompile Include="libs\Zydis\Zydis\src\DecoderData.c" />
+    <ClCompile Include="libs\Zydis\Zydis\src\Formatter.c" />
+    <ClCompile Include="libs\Zydis\Zydis\src\FormatterATT.c" />
+    <ClCompile Include="libs\Zydis\Zydis\src\FormatterBase.c" />
+    <ClCompile Include="libs\Zydis\Zydis\src\FormatterBuffer.c" />
+    <ClCompile Include="libs\Zydis\Zydis\src\FormatterIntel.c" />
+    <ClCompile Include="libs\Zydis\Zydis\src\MetaInfo.c" />
+    <ClCompile Include="libs\Zydis\Zydis\src\Mnemonic.c" />
+    <ClCompile Include="libs\Zydis\Zydis\src\Register.c" />
+    <ClCompile Include="libs\Zydis\Zydis\src\SharedData.c" />
+    <ClCompile Include="libs\Zydis\Zydis\src\String.c" />
+    <ClCompile Include="libs\Zydis\Zydis\src\Utils.c" />
+    <ClCompile Include="libs\Zydis\Zydis\src\Zydis.c" />
     <ClCompile Include="locator.cpp" />
     <ClCompile Include="game\manager\manager.cpp" />
     <ClCompile Include="game\game_objects\attackable_units\turret.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="libs\Zydis\Zydis\src\Generated\AccessedFlags.inc" />
+    <None Include="libs\Zydis\Zydis\src\Generated\DecoderTables.inc" />
+    <None Include="libs\Zydis\Zydis\src\Generated\EncodableInstructions.inc" />
+    <None Include="libs\Zydis\Zydis\src\Generated\EnumInstructionCategory.inc" />
+    <None Include="libs\Zydis\Zydis\src\Generated\EnumISAExt.inc" />
+    <None Include="libs\Zydis\Zydis\src\Generated\EnumISASet.inc" />
+    <None Include="libs\Zydis\Zydis\src\Generated\EnumMnemonic.inc" />
+    <None Include="libs\Zydis\Zydis\src\Generated\EnumRegister.inc" />
+    <None Include="libs\Zydis\Zydis\src\Generated\FormatterStrings.inc" />
+    <None Include="libs\Zydis\Zydis\src\Generated\InstructionDefinitions.inc" />
+    <None Include="libs\Zydis\Zydis\src\Generated\InstructionEncodings.inc" />
+    <None Include="libs\Zydis\Zydis\src\Generated\OperandDefinitions.inc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

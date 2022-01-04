@@ -55,3 +55,8 @@ Player* World::GetPlayer() const
 {
 	return this->player_;
 }
+
+bool game::World::WorldToScreen(Vector3* in, Vector2* out)
+{
+	return reinterpret_cast<bool(__cdecl*)(Vector3*, Vector2*)>((__int32)GetModuleHandle(NULL) + static_cast<int>(Offsets::Functions::WorldToScreen))(in, out);
+}

@@ -32,3 +32,8 @@ void game::GameComponent::PrintChat(const char* message)
 {
 	core::Locator::GetFunctionAccessor()->PrintChat(*this->chat_instance_, message, 0xFFFFFF);
 }
+
+float game::GameComponent::GetGameTime()
+{
+	return *reinterpret_cast<float*>(reinterpret_cast<DWORD>(GetModuleHandle(NULL)) + Offsets::GameTime);
+}

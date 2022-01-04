@@ -1,6 +1,8 @@
 #pragma once
 #include <core/game/functions/function.h>
 #include <core/drawings/geometry/vector.h>
+#include <core/game/Offsets.h>
+#include <core/game/game_objects/attackable_units/AttackableUnit.h>
 namespace game
 {
 	struct FunctionAccessor

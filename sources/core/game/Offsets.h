@@ -129,20 +129,18 @@ namespace Offsets
 
 	enum BuffManager
 	{
-		BuffVectorStart = 0x10,
-		BuffVectorEnd = 0x14,
-		// from BuffEntry
-		BuffType = 0x4,
-		BuffScript = 0x8,
-		BuffName = 0x8,
-		BuffStartTime = 0xC,
-		BuffEndTime = 0x10,
-		BuffDuration = 0x14,
-		BuffStacksAlt1 = 0x20,
-		BuffStacksAlt2 = 0x24,
-		BuffStacksFloat = 0x2C,
-		BuffStacksInt = 0x74,
-		BuffScriptHash = 0x88,
+		type = 0x4,
+		name = 0x8,
+		script = 0x8,
+		hash_name = 0x88,
+		start_time = 0xc,
+		end_time = 0x10,
+		entry_array = 0x10,
+		count = 0x74,
+		count_alt_one = 0x24,
+		count_alt_two = 0x20,
+		node_start = 0x20,
+		node_current = 0x24,
 	};
 
 	enum SpellSlot

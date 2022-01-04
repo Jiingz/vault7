@@ -5,6 +5,7 @@
 #include <core/drawings/geometry/vector.h>
 #include "enums.h"
 #include <core/game/game_objects/structures/ai_manager.h>
+#include <core/game/game_objects/structures/buff_manager.h>
 #include <core/game/Offsets.h>
 
 namespace game {
@@ -53,6 +54,7 @@ namespace game {
 			DEFINE_MEMBER_N(float total_gold, 0x1BA8);
 			DEFINE_MEMBER_N(Vector3 direction, 0x1BF0);
 			DEFINE_MEMBER_N(combat_type combat_type, 0x20E8);
+			DEFINE_MEMBER_N(BuffManager buff_manager, 0x21B8);
 			DEFINE_MEMBER_N(int32_t active_target_index, 0x2DC8);
 			DEFINE_MEMBER_N(int32_t level_up_points, 0x33BC);
 
