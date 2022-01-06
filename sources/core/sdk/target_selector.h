@@ -1,7 +1,7 @@
 #pragma once
 #include <core/game/game_objects/attackable_units/hero.h>
 
-namespace helper
+namespace sdk
 {
 	static class TargetSelector
 	{

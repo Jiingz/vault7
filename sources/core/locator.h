@@ -9,6 +9,8 @@
 #include <core/drawings/draw_factory.h>
 #include <core/game/game_components/game_component.h>
 
+#include <core/libs/config/config.h>
+
 namespace core
 {
 	static class Locator
@@ -21,6 +23,8 @@ namespace core
 		static game::FunctionAccessor* GetFunctionAccessor();
 		static DrawFactory* GetDrawFactory();
 		static game::GameComponent* GetGameComponents();
+
+		static Config config;
 
 		//Singletons
 	private:

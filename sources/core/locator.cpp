@@ -4,6 +4,8 @@ using namespace core;
 using namespace event;
 using namespace game;
 
+Config Locator::config("C:\\ShinShin\\vault.cfg", CONFIG_READWRITE);
+
 std::unique_ptr<event::EventBus> Locator::s_event_bus_;
 std::unique_ptr<game::World> Locator::s_world_;
 std::unique_ptr<HookingService> Locator::s_hooking_service_;
@@ -28,7 +30,7 @@ World* Locator::GetWorld()
 	}
 	return s_world_.get();
 }
-	
+
 HookingService* Locator::GetHookingService()
 {
 	if (!s_hooking_service_)
@@ -55,7 +57,6 @@ DrawFactory* Locator::GetDrawFactory()
 	}
 	return s_draw_factory_.get();
 }
-
 
 GameComponent* Locator::GetGameComponents()
 {

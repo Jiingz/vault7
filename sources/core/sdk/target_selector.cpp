@@ -1,9 +1,9 @@
 #include <Windows.h>
-#include <core/features/helper/target_selector.h>
+#include <core/sdk/target_selector.h>
 #include <core/game/manager/manager.h>
 #include <core/locator.h>
 
-using namespace helper;
+using namespace sdk;
 
 Hero* TargetSelector::GetBestTarget()
 {

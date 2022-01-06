@@ -10,6 +10,13 @@
 
 namespace game {
 
+	class CharacterData
+	{
+	public:
+		DEFINE_MEMBER_N(uint32_t hash_name, 0x0010);
+	}; //Size: 0x0014
+
+
 	class GameObject
 	{
 	public:
@@ -54,12 +61,10 @@ namespace game {
 			DEFINE_MEMBER_N(float total_gold, 0x1BA8);
 			DEFINE_MEMBER_N(Vector3 direction, 0x1BF0);
 			DEFINE_MEMBER_N(combat_type combat_type, 0x20E8);
+			DEFINE_MEMBER_N(CharacterData* character_data, 0x2B58);
 			DEFINE_MEMBER_N(BuffManager buff_manager, 0x21B8);
 			DEFINE_MEMBER_N(int32_t active_target_index, 0x2DC8);
 			DEFINE_MEMBER_N(int32_t level_up_points, 0x33BC);
-
-
-
 		};
 
 	public:

@@ -1,9 +1,12 @@
+#include <Windows.h>
 #include "callbacks.h"
 #include <core/locator.h>
 #include <DirectXMath.h>
 #include <core/event/events.h>;
 #include <mutex>
 #include <core/drawings/menu/menu.h>
+#include <core/mouse.h>
+#include <core/drawings/permashow.h>
 
 using namespace core;
 std::once_flag initMenu;
@@ -20,19 +23,13 @@ HRESULT __stdcall Callbacks::HookedPresent(IDXGISwapChain* swap_chain, UINT sync
 
 	core::Locator::GetEventBus()->Publish<event::OnTick>({});
 
-	mainMenu::DrawMenu();
+	MainMenu::DrawMenu();
+	PermaShow::DrawPermaShow();
 
 	core::Locator::GetDrawFactory()->EndRendering();
 
 	return Locator::GetHookingService()->GetOriginalPresent()(swap_chain, sync_interval, flags);
 }
-
-
-
-
-
-
-
 
 int __fastcall Callbacks::HookedOnProcessSpell(void* spell_book, void* edx, ActiveSpell* active_spell)
 {
@@ -53,4 +50,19 @@ int __fastcall Callbacks::HookedOnProcessSpell(void* spell_book, void* edx, Acti
 
 
 	return Locator::GetHookingService()->GetOriginalOnProcessSpell()(spell_book, active_spell);
+}
+
+constexpr auto origin = &GetCursorPos;
+BOOL WINAPI Callbacks::HookedGetCursorPos(LPPOINT lpPoint)
+{
+	auto org = origin(lpPoint);
+
+	if (Mouse.enabled)
+	{
+		//	Mouse.mutex.lock();
+		//	lpPoint->x = Mouse.x;
+		//	lpPoint->y = Mouse.y;
+		//	Mouse.mutex.unlock();
+	}
+	return org;
 }

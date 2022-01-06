@@ -2,12 +2,19 @@
 #include <wtypes.h>
 #include <core/drawings/renderer.h>
 #include <memory>
+#include <core/drawings/geometry/vector.h>
 
 namespace core
 {
 	class DrawFactory
 	{
+
 	public:
+		enum DrawType {
+			Normal,
+			Filled
+		};
+
 		DrawFactory();
 
 		void InitializeRenderer(IDXGISwapChain* swap_chain);
@@ -19,15 +26,14 @@ namespace core
 		//returns the renderer struct which contains info like the window, origin windowproc etc.
 		Renderer* GetHookInfo();
 
-	public:
-		static bool initialized_;
+		void draw_circle(Vector3 position, float radius, ImColor color, DrawType type, float thickness);
 
+		static bool initialized_;
 	private:
 		void SetContext();
 		void SetImGui();
 
-
-
+		
 		std::unique_ptr<Renderer> renderer_;
 	};
 }

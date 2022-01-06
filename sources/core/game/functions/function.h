@@ -1,5 +1,6 @@
 #pragma once
 #include <type_traits>
+#include <wtypes.h>
 namespace game
 {
 	enum class CallingConvention {

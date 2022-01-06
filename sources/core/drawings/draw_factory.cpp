@@ -1,6 +1,7 @@
 #include <core/drawings/draw_factory.h>
 #include <core/locator.h>
 #include <core/libs/xor.h>
+#include <core/libs/ImGui/imgui_internal.h>
 using namespace core;
 
 bool DrawFactory::initialized_;
@@ -109,4 +110,24 @@ void core::DrawFactory::EndRendering()
 Renderer* DrawFactory::GetHookInfo()
 {
 	return this->renderer_.get();
+}
+
+void core::DrawFactory::draw_circle(Vector3 position, float radius, ImColor color, DrawType type, float thickness)
+{
+	if ((color & IM_COL32_A_MASK) == 0)
+		return;
+	Vector3 world_pos(position.X, position.Y, position.Z);
+	for (auto i = 0; i <= 99; i++) {
+		auto angle = (float)i * IM_PI * 1.98f / 98.0f;
+		world_pos.X = position.X + ImCos(angle) * radius;
+		world_pos.Z = position.Z + ImSin(angle) * radius;
+
+		Vector2 w2s;
+		core::Locator::GetWorld()->WorldToScreen(&world_pos, &w2s);
+		ImGui::GetWindowDrawList()->PathLineTo(ImVec2(w2s.X, w2s.Y));
+	}
+	if (type == DrawType::Normal)
+		ImGui::GetWindowDrawList()->PathStroke(color, 0, thickness);
+	else
+		ImGui::GetWindowDrawList()->PathFillConvex(color);
 }

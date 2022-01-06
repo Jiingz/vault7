@@ -36,11 +36,13 @@ bool Player::Move(Vector3 pos) const
 {
 	DWORD hud_input_logic_ = *(DWORD*)(*(DWORD*)DEFINE_RVA(Offsets::GameClient::HudInstance) + 0x24);
 
+	Vector3 unit_position_ = pos;
+	Vector2 mouse;
+	if (!core::Locator::GetWorld()->WorldToScreen(&unit_position_, &mouse))
+		return false;
 
-	POINT mouse;
-	GetCursorPos(&mouse);
-	core::Locator::GetFunctionAccessor()->NewIssueOrder(hud_input_logic_, 0, 0, true, mouse.x, mouse.y, 0);
-	core::Locator::GetFunctionAccessor()->NewIssueOrder(hud_input_logic_, 1, 0, true, mouse.x, mouse.y, 0);
+	core::Locator::GetFunctionAccessor()->NewIssueOrder(hud_input_logic_, 0, 0, true, mouse.X, mouse.Y, 0);
+	core::Locator::GetFunctionAccessor()->NewIssueOrder(hud_input_logic_, 1, 0, true, mouse.X, mouse.Y, 0);
 
 	return true;
 }

@@ -167,7 +167,7 @@
     <ClInclude Include="event\event_bus.h" />
     <ClInclude Include="features\feature_controller.h" />
     <ClInclude Include="features\feature_interface.h" />
-    <ClInclude Include="features\helper\target_selector.h" />
+    <ClInclude Include="sdk\target_selector.h" />
     <ClInclude Include="features\humanizer.h" />
     <ClInclude Include="features\orbwalker.h" />
     <ClInclude Include="game\functions\function.h" />
@@ -259,9 +259,10 @@
   <ItemGroup>
     <ClCompile Include="drawings\draw_factory.cpp" />
     <ClCompile Include="dllmain.cpp" />
-    <ClCompile Include="drawings\menu\checkbox.cpp" />
+    <ClCompile Include="drawings\menu\menu.cpp" />
+    <ClCompile Include="drawings\permashow.cpp" />
     <ClCompile Include="features\feature_controller.cpp" />
-    <ClCompile Include="features\helper\target_selector.cpp" />
+    <ClCompile Include="sdk\target_selector.cpp" />
     <ClCompile Include="features\orbwalker.cpp" />
     <ClCompile Include="game\game_components\game_component.cpp" />
     <ClCompile Include="game\game_objects\attackable_units\AttackableUnit.cpp" />

@@ -10,14 +10,19 @@
 
 using namespace feature;
 
+SetOnTick(GetOnTick, feature::FeatureController::GetOrbwalker()->OnTick)
+SetOnDraw(GetOnDraw, feature::FeatureController::GetOrbwalker()->OnDraw)
+SetOnBasicAttack(GetOnBasicAttack, feature::FeatureController::GetOrbwalker()->OnBasicAttack)
+
 void Orbwalker::Initialize()
 {
-	core::Locator::GetEventBus()->Subscribe<event::OnTick>(OnTickSub);
-	core::Locator::GetEventBus()->Subscribe<event::OnBasicAttackArgs>(OnBasicAttackSub);
-	core::Locator::GetGameComponents()->PrintChat("Orbwalker++ Loaded");
-	this->last_aa_ = 0.f;
-	this->last_move_ = 0.f;
+	core::Locator::GetEventBus()->Subscribe<event::OnTick>(&GetOnTick);
+	core::Locator::GetEventBus()->Subscribe<event::OnTick>(&GetOnDraw);
+	core::Locator::GetEventBus()->Subscribe<event::OnBasicAttackArgs>(&GetOnBasicAttack);
 
+	core::Locator::GetGameComponents()->PrintChat("Orbwalker++ Loaded");
+
+	LoadConfig();
 }
 
 void feature::Orbwalker::DrawMenu()
@@ -28,48 +33,51 @@ void feature::Orbwalker::DrawMenu()
 	ImGui::PopItemWidth();
 }
 
-
-void Orbwalker::OnTickSub()
-{
-	FeatureController::GetOrbwalker()->OnTick();
-}
-
-void Orbwalker::OnBasicAttackSub(event::OnBasicAttackArgs args)
-{
-	FeatureController::GetOrbwalker()->OnBasicAttack(args);
-}
-
 bool Orbwalker::CanAttack()
 {
-	return GetTickCount() + 20 / 2.f >= this->last_aa_ + local_player->GetAttackDelay() * 1000.f;
+	if (local_player->character_data->hash_name == game::hash_names::Jhin)
+	{
+		if (local_player->buff_manager.GetBuffEntryByName("JhinPassiveReload"))
+			return false;
+	}
+
+	return GetTickCount() + 20 / 2.f >= Orbwalker::last_aa_ + local_player->GetAttackDelay() * 1000.f;
 }
 
 bool Orbwalker::CanMove()
 {
-	return GetTickCount() >= last_aa_ + local_player->GetAttackCastDelay() * 1000.f + 20 / 2 + this->windup_;
+	return GetTickCount() >= Orbwalker::last_aa_ + local_player->GetAttackCastDelay() * 1000.f + 20 / 2 + Orbwalker::windup_;
 }
 
 void Orbwalker::OnTick()
 {
-
-	Hero* target = GetBestTarget();
-
 	if (GetAsyncKeyState(VK_SPACE))
 	{
-		Hero* target = GetBestTarget();
+		Hero* target = sdk::TargetSelector::GetBestTarget();
 
-		if (target && CanAttack())
+		if (target && Orbwalker::CanAttack())
 		{
 			core::Locator::GetWorld()->GetPlayer()->Attack(target);
+			this->orbwalker_state_ = orbwalker_state::attacking;
 		}
-		else if (CanMove() && this->last_move_ < GetTickCount())
+		else if (Orbwalker::CanMove() && Orbwalker::last_move_ < GetTickCount())
 		{
-
+			this->orbwalker_state_ = orbwalker_state::moving;
 			Vector3 mousePos = core::Locator::GetGameComponents()->GetMouseWorldPos();
 			core::Locator::GetWorld()->GetPlayer()->Move(mousePos);
-			this->last_move_ = GetTickCount() + 20;
+			Orbwalker::last_move_ = GetTickCount() + 20;
 		}
 	}
+	else
+	{
+		this->orbwalker_state_ = orbwalker_state::inactive;
+	}
+}
+
+
+void Orbwalker::OnDraw()
+{
+	core::Locator::GetDrawFactory()->draw_circle(local_player->position, local_player->attack_range + local_player->GetBoundingRadius(), ImColor{ 217,144,7,255 }, core::DrawFactory::DrawType::Normal, 1.f);
 }
 
 void feature::Orbwalker::OnBasicAttack(event::OnBasicAttackArgs args)
@@ -77,5 +85,21 @@ void feature::Orbwalker::OnBasicAttack(event::OnBasicAttackArgs args)
 	if (args.sender_index != local_player->index)
 		return;
 
-	this->last_aa_ = GetTickCount() - 20 / 2;
+	last_aa_ = GetTickCount() - 20 / 2;
+}
+
+void feature::Orbwalker::SaveConfig()
+{
+	core::Locator::config.Write<float>("windup", this->windup_);
+}
+
+Orbwalker::orbwalker_state feature::Orbwalker::GetOrbwalkerState() noexcept
+{
+	return this->orbwalker_state_;
+}
+
+
+void feature::Orbwalker::LoadConfig()
+{
+	this->windup_ = core::Locator::config.Read<float>("windup");
 }

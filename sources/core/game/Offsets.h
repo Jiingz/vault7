@@ -21,28 +21,28 @@ namespace Globals
 namespace Offsets
 {
 	enum Functions : DWORD {
-		HealthBarPosition = 0x5AB4C0, // 83 EC 24 53 55 56 57 8B F9 6A // Function call :  E8 ? ? ? ? 8B 4E 08 8D 54 24 04 52 | I recreate that
-		WorldToScreen = 0xA28160, // 83 EC 10 56 E8 ? ? ? ? 8B 08  || FUNCTION CALL OF W2s: E8 ? ? ? ? F3 0F 10 4C 24 ? 83 C4 10 F3 0F 10
-		GetBasicAttack = 0x2034F0, // E8 ? ? ? ? 83 38 00 74 4B 
-		GetAttackDelay = 0x26E5F0, // 8B 44 24 04 51 F3
-		GetAttackCastDelay = 0x26E4F0, // 83 EC 0C 53 8B 5C 24 14 8B CB 56
-		GetBoundingRadius = 0x1220F0, // 83 EC 08 56 8B F1 83 BE ? ? ? ? ? 74
-		BaseDrawPosition = 0x16EBD0, // E8 ? ? ? ? EB 07 8B 01 8B call GetBaseDrawPos()
-		IsNotWall = 0x518070,	  // E8 ? ? ? ? 83 C4 10 80 BE ? ? ? ? ? 74 0A
-		CompareObjectTypeFlags = 0x2377E0, // E8 ? ? ? ? 84 C0 0F 84 ? ? ? ? 8B 87 ? ? ? ? 8D
+		HealthBarPosition = 0x5ADDD0, // 83 EC 24 53 55 56 57 8B F9 6A // Function call :  E8 ? ? ? ? 8B 4E 08 8D 54 24 04 52 | I recreate that
+		WorldToScreen = 0xA2B540, // 83 EC 10 56 E8 ? ? ? ? 8B 08  || FUNCTION CALL OF W2s: E8 ? ? ? ? F3 0F 10 4C 24 ? 83 C4 10 F3 0F 10
+		GetBasicAttack = 0x123160, // E8 ? ? ? ? 83 38 00 74 4B 
+		GetAttackDelay = 0x270810, // 8B 44 24 04 51 F3
+		GetAttackCastDelay = 0x270710, // 83 EC 0C 53 8B 5C 24 14 8B CB 56
+		GetBoundingRadius = 0x123260, // 83 EC 08 56 8B F1 83 BE ? ? ? ? ? 74
+		BaseDrawPosition = 0x16FEE0, // E8 ? ? ? ? EB 07 8B 01 8B call GetBaseDrawPos()
+		IsNotWall = 0x9AF1F0,	  // E8 ? ? ? ? 83 C4 10 80 BE ? ? ? ? ? 74 0A
+		CompareObjectTypeFlags = 0x23A440, // E8 ? ? ? ? 84 C0 0F 84 ? ? ? ? 8B 87 ? ? ? ? 8D
 		//IsValidObject = E8 ? ? ? ? 84 C0 75 ? 5E 83 C4 ? C2 ? ?
-		onProcessSpell = 0x508330,				// 56 8B 74 24 08 8B 16 85
-		OnCreateObject = 0x27AA40, //UNUSED		// 56 8B F1 80 7E 28 00 75
-		OnDeleteObject = 0x26F690, //UNUSED		// 53 57 8B 7C 24 0C 8B D9 8B CF E8
+		onProcessSpell = 0x50AF40,				// 56 8B 74 24 08 8B 16 85
+		OnCreateObject = 0x27C740, //UNUSED		// 56 8B F1 80 7E 28 00 75
+		OnDeleteObject = 0x2718C0, //UNUSED		// 53 57 8B 7C 24 0C 8B D9 8B CF E8
 		OnNewPath = 0x277B80, //UNUSED			// 83 EC 18 56 8B 74 24 20 8B CE 57 OUTDATED
-		PrintChat = 0x588120,					// INSIDE PRINTCHAT FUNC: 8B 4D E0 42    ||  CALL OF PRINTCHAT: E8 ? ? ? ? B8 ? ? ? ? C7 04 
+		PrintChat = 0x58C070,					// INSIDE PRINTCHAT FUNC: 8B 4D E0 42    ||  CALL OF PRINTCHAT: E8 ? ? ? ? B8 ? ? ? ? C7 04 
 		//IsNotWall = 0x8e64f0,
-		NewIssueOrder = 0x5FAA60, // inside function: 75 18 8B 0D ? ? ? ? 57
-		NewCastSpell = 0x5E2D10, // 53 8B 1D ?? ?? ?? ?? 55 56 57 8B F9 85
+		NewIssueOrder = 0x605950, // inside function: 75 18 8B 0D ? ? ? ? 57
+		NewCastSpell = 0x5E8AA0, // 53 8B 1D ?? ?? ?? ?? 55 56 57 8B F9 85
 
 		//Healthbar pos
-		v15a1 = 0xC,														//updated 11.24
-		v15a2 = 0x268,														//updated 11.24
+		v15a1 = 0xC,														//updated 12.1
+		v15a2 = 0x268,														//updated 12.1
 	};
 
 	enum GameObject
@@ -84,30 +84,30 @@ namespace Offsets
 	};
 
 	enum GameClient : DWORD {
-		GameTime = 0x3101314, // F3 0F 5C 0D ? ? ? ? 0F 2F C1 F3	 subss   xmm1, dword_offset
-		GameInfo = 0x30FC71C, // A1 ? ? ? ? 68 ? ? ? ? 8B 70 08
-		ObjManager = 0x186CD64, // 89 ? ? ? ? ? 57 C7 06 ? ? ? ? 66 C7 46 04 ? ?
-		UnderMouseObject = 0x310A41C, // A1 ? ? ? ? 8B 0D ? ? ? ? 3B 
-		HudInstance = 0x186CD9C, // 8B 2D ? ? ? ? 8B 75
-		LocalPlayer = 0x3109D4C, // A1 ? ? ? ? 85 C0 74 07 05 ? ? ? ? EB 02 33 C0 56
-		BuffManager = 0x21B8, // 8D 8F ? ? ? ? E8 ? ? ? ? 6A 00 50								ecx, [edi + offseth]
-		StaticRenderer = 0x31358D0, // A1 ? ? ? ? F3 0F 10 60 ?		dword_offset
+		GameTime = 0x31034D4, // F3 0F 5C 0D ? ? ? ? 0F 2F C1 F3	 subss   xmm1, dword_offset
+		GameInfo = 0x30FE7FC, // A1 ? ? ? ? 68 ? ? ? ? 8B 70 08
+		ObjManager = 0x186EE44, // 89 ? ? ? ? ? 57 C7 06 ? ? ? ? 66 C7 46 04 ? ?
+		UnderMouseObject = 0x183EA70, // A1 ? ? ? ? 8B 0D ? ? ? ? 3B 
+		HudInstance = 0x186EE7C, // 8B 2D ? ? ? ? 8B 75
+		LocalPlayer = 0x310B984, // A1 ? ? ? ? 85 C0 74 07 05 ? ? ? ? EB 02 33 C0 56
+		BuffManager = 0x21B8, // 8D 83 ? ? ? ? 50 8D AB ? ? ? ?								eax, [ebx + offset]
+		StaticRenderer = 0x3137D08, // A1 ? ? ? ? F3 0F 10 60 ?		dword_offset
 	};
 
 	enum Chat : DWORD {
-		ChatInstance = 0x30FC718,  // 8B 0D ? ? ? ? 6A 00 50 E8 ? ? ? ? 84 
+		ChatInstance = 0x30FE7F8,  // 8B 0D ? ? ? ? 6A 00 50 E8 ? ? ? ? 84 
 	};
 
 	enum ManagerTemplate : DWORD {
 		_ManagerTemplate_Func_ = 0x2f1180, //UNUSED, might be useful to find offsets but idk // OUTDATED 11.19
-		AIMissileClient = 0x3109DC4,// 8B 0D ? ? ? ? 56 8B 01 FF		//UNUSED wont use that shit
-		AIMinionClient = 0x186CDFC, // A1 ? ? ? ? 53 55 8B 6C 24 1C		// 8B 35 ? ? ? ? 8B 56 
-		AITurretClient = 0x30FD500, // A1 ? ? ? ? 53 56 8B 70 04		// 8B 0D ? ? ? ? FF 74 24 14 FF 74 24 14 E8
-		AIHeroClient = 0x186AB74, 	// 8B 15 ? ? ? ? 0F 44 C1
-		AIAttackableUnitClient = 0x186CDA4, // A1 ? ? ? ? FF B4 24 ? ? ? ? F3 0F 10 44 24 ? F3
-		AIShopClient = 0x30FD504, // 8B 0D ? ? ? ? E8 ? ? ? ? 84 C0 75 11 8B
-		AIInhibitorClient = 0x310A400, // A1 ? ? ? ? 53 55 56 8B 70 04 8B 40
-		AIBuildingClient = 0x186A3C8, // 8B 15 ? ? ? ? 8B 7A 04 8B 42 08 8D 0C 87 3B F9 73 38
+		AIMissileClient = 0x310BF08,// 8B 0D ? ? ? ? 56 8B 01 FF		//UNUSED wont use that shit
+		AIMinionClient = 0x186EEDC, // A1 ? ? ? ? 53 55 8B 6C 24 1C		// 8B 35 ? ? ? ? 8B 56 
+		AITurretClient = 0x30FF5E0, // A1 ? ? ? ? 53 56 8B 70 04		// 8B 0D ? ? ? ? FF 74 24 14 FF 74 24 14 E8
+		AIHeroClient = 0x186CC58, 	// 8B 15 ? ? ? ? 0F 44 C1
+		AIAttackableUnitClient = 0x186EE84, // A1 ? ? ? ? FF B4 24 ? ? ? ? F3 0F 10 44 24 ? F3
+		AIShopClient = 0x30FF5E4, // 8B 0D ? ? ? ? E8 ? ? ? ? 84 C0 75 11 8B
+		AIInhibitorClient = 0x310C4E0, // A1 ? ? ? ? 53 55 56 8B 70 04 8B 40
+		AIBuildingClient = 0x186C4A8, // 8B 15 ? ? ? ? 8B 7A 04 8B 42 08 8D 0C 87 3B F9 73 38
 	};
 
 	enum AIManager : DWORD

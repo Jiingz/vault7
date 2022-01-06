@@ -29,6 +29,9 @@ namespace core
 		//hooks leagues callbacks using DEP
 		void StartDEPHooks();
 
+		//Hook GetCursorPos using MS Detours Lib
+		void HookGetCursorPos();
+
 		//returns the original present
 		Present GetOriginalPresent();
 		//returns the original OnProcessSpell

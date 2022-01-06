@@ -3,6 +3,7 @@
 #include <core/locator.h>
 #include <string>
 #include <core/hooking/ultimate_hooks.h>
+#include <core/libs/Detours/detours.h>
 
 using namespace core;
 
@@ -27,6 +28,17 @@ kiero::Status::Enum HookingService::HookPresent()
 void HookingService::StartDEPHooks()
 {
 	UltHook.DEPAddHook(reinterpret_cast<DWORD>(GetModuleHandle(NULL)) + Offsets::onProcessSpell, reinterpret_cast<DWORD>(Callbacks::HookedOnProcessSpell), on_process_spell_, 0x59, new_on_process_spell, 1);
+}
+
+void core::HookingService::HookGetCursorPos()
+{
+	constexpr auto origin = &GetCursorPos;
+
+	DetourRestoreAfterWith();
+	DetourTransactionBegin();
+	DetourUpdateThread(GetCurrentThread());
+	DetourAttach(&(PVOID&)origin, Callbacks::HookedGetCursorPos);
+	DetourTransactionCommit();
 }
 
 HookingService::Present HookingService::GetOriginalPresent()

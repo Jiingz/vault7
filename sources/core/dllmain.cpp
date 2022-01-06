@@ -7,34 +7,14 @@
 #include <core/game/manager/manager.h>
 #include <core/locator.h>
 #include <core/features/feature_controller.h>
-#include <core/mouse.h>
 #include <core/libs/Detours/detours.h>
 
-static auto origin = &GetCursorPos;
-
-BOOL WINAPI hGetCursorPos(LPPOINT lpPoint)
-{
-	auto org = origin(lpPoint);
-
-	if (Mouse.enabled)
-	{
-		//	Mouse.mutex.lock();
-		//	lpPoint->x = Mouse.x;
-		//	lpPoint->y = Mouse.y;
-		//	Mouse.mutex.unlock();
-	}
-	return org;
-}
+HMODULE thread;
 
 int main()
 {
-	//Hook GetCursorPos using MS Detours Lib
-	DetourRestoreAfterWith();
-	DetourTransactionBegin();
-	DetourUpdateThread(GetCurrentThread());
-	DetourAttach(&(PVOID&)origin, hGetCursorPos);
-	DetourTransactionCommit();
-
+	//Hooks GetCursorPos WINAPI function to spoof the mouse position. Mostly used for CastSpell.
+	//core::Locator::GetHookingService()->HookGetCursorPos();
 
 	//Hook the present
 	core::Locator::GetHookingService()->HookPresent();
@@ -50,7 +30,16 @@ int main()
 }
 
 
+void OnExit() noexcept {
 
+	//Save all configs on game close
+	feature::FeatureController::GetOrbwalker()->SaveConfig();
+
+	//Finish config writing
+	core::Locator::config.FinishWriting();
+
+	CloseHandle((HANDLE)thread);
+}
 
 bool APIENTRY DllMain(HMODULE hModule,
 	DWORD  ul_reason_for_call,
@@ -60,11 +49,14 @@ bool APIENTRY DllMain(HMODULE hModule,
 	switch (ul_reason_for_call)
 	{
 	case DLL_PROCESS_ATTACH:
-		//	main();
+		std::atexit(OnExit);
+		thread = hModule;
 		_beginthreadex(nullptr, 0, (_beginthreadex_proc_type)main, hModule, 0, nullptr);
+		break;
 	case DLL_THREAD_ATTACH:
 	case DLL_THREAD_DETACH:
 	case DLL_PROCESS_DETACH:
+		OnExit();
 		break;
 	}
 	return TRUE;

@@ -15,14 +15,14 @@
 */
 
 
-cConfig::cConfig()
+Config::Config()
 {
 	this->strConfigPath = ""; // Configpath leermachen da nichts �bergeben wurde
 }
 
 
 
-cConfig::cConfig(std::string configpath, confParams configMode)
+Config::Config(std::string configpath, confParams configMode)
 {
 	//modus setzen
 	this->e_confparams = configMode;
@@ -34,14 +34,14 @@ cConfig::cConfig(std::string configpath, confParams configMode)
 	switch (this->e_confparams) // switch f�r die parameter
 	{
 	case CONFIG_READ: // nur lesen
-		this->openInputStream();
+		this->OpenInputStream();
 		break;
 	case CONFIG_WRITE: // nur schrieben
-		this->openOutputStream();
+		this->OpenOutputStream();
 		break;
 	case CONFIG_READWRITE: //lesen und schreiben
-		this->openInputStream();
-		this->openOutputStream();
+		this->OpenInputStream();
+		this->OpenOutputStream();
 		break;
 	default: // default wenn davon nix ist.
 		break;
@@ -52,24 +52,24 @@ cConfig::cConfig(std::string configpath, confParams configMode)
 
 }
 
-cConfig::~cConfig() // schliest die streams
+Config::~Config() // schliest die streams
 {
 	//filestreams schlie�en
-	this->closeInputStream();
-	this->closeOutputStream();
+	this->CloseInputStream();
+	this->CloseOutputStream();
 }
 
-std::string cConfig::getPath() // gibt den path der config zur�ck
+std::string Config::GetPath() // gibt den path der config zur�ck
 {
 	return this->strConfigPath; // returnt den strConfigPath
 }
 
-void cConfig::setParam(confParams Params)
+void Config::SetParam(confParams Params)
 {
 	this->e_confparams = Params;
 }
 
-void FORCEINLINE cConfig::closeOutputStream()
+void FORCEINLINE Config::CloseOutputStream()
 {
 	if (this->e_confparams == CONFIG_WRITE || this->e_confparams == CONFIG_READWRITE)
 	{
@@ -78,7 +78,7 @@ void FORCEINLINE cConfig::closeOutputStream()
 }
 
 
-void FORCEINLINE cConfig::closeInputStream()
+void FORCEINLINE Config::CloseInputStream()
 {
 	if (this->e_confparams == CONFIG_READ || this->e_confparams == CONFIG_READWRITE)
 	{
@@ -86,7 +86,7 @@ void FORCEINLINE cConfig::closeInputStream()
 	}
 }
 
-void FORCEINLINE cConfig::openOutputStream()
+void FORCEINLINE Config::OpenOutputStream()
 {
 	if (this->e_confparams == CONFIG_WRITE || this->e_confparams == CONFIG_READWRITE)
 	{
@@ -94,7 +94,7 @@ void FORCEINLINE cConfig::openOutputStream()
 	}
 }
 
-void FORCEINLINE cConfig::openInputStream()
+void FORCEINLINE Config::OpenInputStream()
 {
 	if (this->e_confparams == CONFIG_READ || this->e_confparams == CONFIG_READWRITE)
 	{

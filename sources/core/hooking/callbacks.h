@@ -10,6 +10,6 @@ namespace core
 	public:
 		static HRESULT __stdcall HookedPresent(IDXGISwapChain* pSwapChain, UINT SyncInterval, UINT Flags);
 		static int __fastcall HookedOnProcessSpell(void* spellBook, void* edx, ActiveSpell* activeSpell);
-
+		static BOOL WINAPI HookedGetCursorPos(LPPOINT lpPoint);
 	};
 }

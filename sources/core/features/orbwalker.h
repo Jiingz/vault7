@@ -7,19 +7,32 @@ namespace feature
 	class Orbwalker : protected IFeature
 	{
 	public:
+
+		enum orbwalker_state
+		{
+			attacking,
+			moving,
+			inactive
+		};
+
 		void Initialize();
 		void DrawMenu();
-	private:
-		void OnTick();
-		void OnBasicAttack(event::OnBasicAttackArgs args);
+		void SaveConfig();
 
-		static void OnTickSub();
-		static void OnBasicAttackSub(event::OnBasicAttackArgs args);
+		orbwalker_state GetOrbwalkerState() noexcept;
+
+		void OnTick();
+		void OnDraw();
+		void OnBasicAttack(event::OnBasicAttackArgs args);
+	private:
+
+		void LoadConfig();
+
 
 		float last_aa_;
 		float last_move_;
-
 		float windup_;
+		orbwalker_state orbwalker_state_;
 
 	protected:
 		virtual bool CanAttack();

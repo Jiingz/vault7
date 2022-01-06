@@ -23,15 +23,15 @@ enum confParams //modi f�r configfiles
 	CONFIG_READWRITE //beides
 };
 
-class cConfig
+class Config
 {
 public:
-	cConfig(); // leerer konstruktor
-	cConfig(std::string configpath, confParams configMode); // konstruktor mit �ffnen der streams
-	~cConfig(); // destruktor der die streams schliesst
+	Config(); // leerer konstruktor
+	Config(std::string configpath, confParams configMode); // konstruktor mit �ffnen der streams
+	~Config(); // destruktor der die streams schliesst
 
 
-	std::string getPath(); //wrapper f�r strConfigPath
+	std::string GetPath(); //wrapper f�r strConfigPath
 
 
 	template<class write_T> // template f�r Write um in die config zu schreiben
@@ -46,13 +46,20 @@ public:
 
 
 
-	void setParam(confParams Params);
+	void SetParam(confParams Params);
 
-	void FORCEINLINE closeOutputStream();
-	void FORCEINLINE closeInputStream();
+	void FORCEINLINE CloseOutputStream();
+	void FORCEINLINE CloseInputStream();
 
-	void FORCEINLINE openOutputStream();
-	void FORCEINLINE openInputStream();
+	void FORCEINLINE OpenOutputStream();
+	void FORCEINLINE OpenInputStream();
+
+	inline void FinishWriting()
+	{
+
+		this->CloseInputStream();
+		this->CloseOutputStream();
+	}
 
 
 private:
@@ -65,7 +72,7 @@ private:
 
 
 template<class write_T> //template damit man nicht tausende �berladungen hat
-inline bool cConfig::Write(std::string strOptName, write_T tValue) // schreibt einen wert in eine datei
+inline bool Config::Write(std::string strOptName, write_T tValue) // schreibt einen wert in eine datei
 {
 	if (!(this->e_confparams == CONFIG_WRITE) && !(this->e_confparams == CONFIG_READWRITE))
 		return false;
@@ -75,10 +82,12 @@ inline bool cConfig::Write(std::string strOptName, write_T tValue) // schreibt e
 
 	this->outputFileStream << strOptName << " = \"" << tValue << "\";\n"; // schreibt in die datei
 
+	//this->CloseOutputStream(); // OP said we should close after writing https://www.unknowncheats.me/forum/c-and-c-/185889-simple-config-class.html
+
+
 	return true; // gibt true zur�ck wenn alles glattlief
 
 }
-
 
 template<typename T>
 std::vector<T>
@@ -116,14 +125,14 @@ std::string FORCEINLINE strGetOptionNameFromLine(std::string strLine) //gibt den
 
 
 template<typename read_T>
-inline read_T cConfig::Read(std::string strOptName)
+inline read_T Config::Read(std::string strOptName)
 {
 
 	if (!(this->e_confparams == CONFIG_READ) && !(this->e_confparams == CONFIG_READWRITE)) // nur lesen 
 		return -1;
 
-	this->closeInputStream(); //filestream closen damit wir wieder am anfang sind.
-	this->openInputStream(); //filestream dann wieder �ffnen um lesen zu k�nnen
+	this->CloseInputStream(); //filestream closen damit wir wieder am anfang sind.
+	this->OpenInputStream(); //filestream dann wieder �ffnen um lesen zu k�nnen
 
 
 	if (!this->inputFileStream.good()) // ist die datei vorhanden?
@@ -149,13 +158,13 @@ inline read_T cConfig::Read(std::string strOptName)
 }
 
 template<class read_T>
-inline read_T cConfig::class_Read(std::string strOptName)
+inline read_T Config::class_Read(std::string strOptName)
 {
 	if (!(this->e_confparams == CONFIG_READ) && !(this->e_confparams == CONFIG_READWRITE)) // nur lesen 
 		return -1;
 
-	this->closeInputStream(); //filestream closen damit wir wieder am anfang sind.
-	this->openInputStream(); //filestream dann wieder �ffnen um lesen zu k�nnen
+	this->CloseInputStream(); //filestream closen damit wir wieder am anfang sind.
+	this->OpenInputStream(); //filestream dann wieder �ffnen um lesen zu k�nnen
 
 
 	if (!this->inputFileStream.good()) // ist die datei vorhanden?

@@ -135,7 +135,7 @@
     <ClInclude Include="game\game_objects\attackable_units\player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="features\helper\target_selector.h">
+    <ClInclude Include="sdk\target_selector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="game\game_objects\enums.h">
@@ -383,7 +383,7 @@
     <ClCompile Include="game\game_objects\attackable_units\player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="features\helper\target_selector.cpp">
+    <ClCompile Include="sdk\target_selector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="hooking\kiero.cpp">
@@ -440,10 +440,13 @@
     <ClCompile Include="hooking\ultimate_hooks.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="drawings\menu\checkbox.cpp">
+    <ClCompile Include="libs\config\config.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="libs\config\config.cpp">
+    <ClCompile Include="drawings\menu\menu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="drawings\permashow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
