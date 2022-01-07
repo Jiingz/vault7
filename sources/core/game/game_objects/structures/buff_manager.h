@@ -1,6 +1,7 @@
 #pragma once
 #include <core/game/game_objects/structures/buff.h>
 #include <core/game/Offsets.h>
+#include <vector>
 
 namespace game
 {
@@ -17,5 +18,6 @@ namespace game
 		Buff* GetBuffEntryByName(const char* BuffName) const;
 
 		Buff* GetBuffEntryByHash(buff_hash hash);
+		std::vector<Buff*> GetBuffEntries();
 	};
 }

@@ -7,6 +7,7 @@
 #include <core/drawings/menu/menu.h>
 #include <core/mouse.h>
 #include <core/drawings/permashow.h>
+#include <core/tests/test_run.h>
 
 using namespace core;
 std::once_flag initMenu;
@@ -24,6 +25,7 @@ HRESULT __stdcall Callbacks::HookedPresent(IDXGISwapChain* swap_chain, UINT sync
 	core::Locator::GetEventBus()->Publish<event::OnTick>({});
 
 	MainMenu::DrawMenu();
+	core::TestRun::DrawMenu();
 	PermaShow::DrawPermaShow();
 
 	core::Locator::GetDrawFactory()->EndRendering();
@@ -44,6 +46,7 @@ int __fastcall Callbacks::HookedOnProcessSpell(void* spell_book, void* edx, Acti
 		on_basic_attack_args.active_spell = active_spell;
 		on_basic_attack_args.sender_index = active_spell->sender_index;
 		on_basic_attack_args.is_special_attack = active_spell->is_special_attack || active_spell->is_headshot_attack;
+		on_basic_attack_args.target_index_vector = active_spell->GetTargetsIndexVector();
 		core::Locator::GetEventBus()->Publish<event::OnBasicAttackArgs>(on_basic_attack_args);
 	}
 

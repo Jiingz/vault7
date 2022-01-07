@@ -2,11 +2,12 @@
 #include <core/features/orbwalker.h>
 #include <core/locator.h>
 #include <core/event/events.h>
-#include <functional>
 #include <core/features/feature_controller.h>
 #include <core/features/humanizer.h>
 #include <string>
 #include <core/drawings/menu/menu.h>
+#include <core/sdk/controller.h>
+#include <core/game/world/world.h>
 
 using namespace feature;
 
@@ -35,7 +36,7 @@ void feature::Orbwalker::DrawMenu()
 
 bool Orbwalker::CanAttack()
 {
-	if (local_player->character_data->hash_name == game::hash_names::Jhin)
+	if (local_player->character_data->hash_name == game::hash_name::Jhin)
 	{
 		if (local_player->buff_manager.GetBuffEntryByName("JhinPassiveReload"))
 			return false;
@@ -57,14 +58,15 @@ void Orbwalker::OnTick()
 
 		if (target && Orbwalker::CanAttack())
 		{
-			core::Locator::GetWorld()->GetPlayer()->Attack(target);
+			sdk::Controller::Attack(target);
 			this->orbwalker_state_ = orbwalker_state::attacking;
 		}
 		else if (Orbwalker::CanMove() && Orbwalker::last_move_ < GetTickCount())
 		{
 			this->orbwalker_state_ = orbwalker_state::moving;
+
 			Vector3 mousePos = core::Locator::GetGameComponents()->GetMouseWorldPos();
-			core::Locator::GetWorld()->GetPlayer()->Move(mousePos);
+			sdk::Controller::Move(&mousePos);
 			Orbwalker::last_move_ = GetTickCount() + 20;
 		}
 	}

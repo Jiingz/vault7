@@ -32,6 +32,58 @@ namespace game
 		ranged = 2
 	};
 
+	enum object_flag
+	{
+		GameObjectFlags_AIBaseClient = 1 << 10,
+		GameObjectFlags_AIMinionClient = 1 << 11,
+		GameObjectFlags_AIHeroClient = 1 << 12,
+		GameObjectFlags_AITurretClient = 1 << 13,
+		GameObjectFlags_MissileClient = 1 << 15
+	};
+
+	enum buff_type
+	{
+		BUFF_Internal = 0,
+		BUFF_Aura = 1,
+		BUFF_CombatEnhancer = 2,
+		BUFF_CombatDehancer = 3,
+		BUFF_SpellShield = 4,
+		BUFF_Stun = 5,
+		BUFF_Invisibility = 6,
+		BUFF_Silence = 7,
+		BUFF_Taunt = 8,
+		BUFF_Berserk = 9,
+		BUFF_Polymorph = 10,
+		BUFF_Slow = 11,
+		BUFF_Snare = 12,
+		BUFF_Damage = 13,
+		BUFF_Heal = 14,
+		BUFF_Haste = 15,
+		BUFF_SpellImmunity = 16,
+		BUFF_PhysicalImmunity = 17,
+		BUFF_Invulnerability = 18,
+		BUFF_AttackSpeedSlow = 19,
+		BUFF_NearSight = 20,
+		BUFF_Fear = 22,
+		BUFF_Charm = 23,
+		BUFF_Poison = 24,
+		BUFF_Suppression = 25,
+		BUFF_Blind = 26,
+		BUFF_Counter = 27,
+		BUFF_Currency = 21,
+		BUFF_Shred = 28,
+		BUFF_Flee = 29,
+		BUFF_Knockup = 30,
+		BUFF_Knockback = 31,
+		BUFF_Disarm = 32,
+		BUFF_Grounded = 33,
+		BUFF_Drowsy = 34,
+		BUFF_Asleep = 35,
+		BUFF_Obscured = 36,
+		BUFF_ClickproofToEnemies = 37,
+		BUFF_UnKillable = 38
+	};
+
 	enum buff_hash : ULONG
 	{
 		barontarget = 0xD7D32CF6,
@@ -86,7 +138,7 @@ namespace game
 		immortalShieldBow = 0xF0164916,
 	};
 
-	enum  hash_names
+	enum  hash_name
 	{
 		Aatrox = 0x71097207,
 		Ahri = 0xD4BD813E,
@@ -355,48 +407,5 @@ namespace game
 		DominationScout = 0x97648C10,
 		PerksZombieWard = 0x55814507,
 		FiddleSticksEffigy = 0xEA40EFD5,
-	};
-
-	enum buff_type
-	{
-		BUFF_Internal = 0,
-		BUFF_Aura = 1,
-		BUFF_CombatEnhancer = 2,
-		BUFF_CombatDehancer = 3,
-		BUFF_SpellShield = 4,
-		BUFF_Stun = 5,
-		BUFF_Invisibility = 6,
-		BUFF_Silence = 7,
-		BUFF_Taunt = 8,
-		BUFF_Berserk = 9,
-		BUFF_Polymorph = 10,
-		BUFF_Slow = 11,
-		BUFF_Snare = 12,
-		BUFF_Damage = 13,
-		BUFF_Heal = 14,
-		BUFF_Haste = 15,
-		BUFF_SpellImmunity = 16,
-		BUFF_PhysicalImmunity = 17,
-		BUFF_Invulnerability = 18,
-		BUFF_AttackSpeedSlow = 19,
-		BUFF_NearSight = 20,
-		BUFF_Fear = 22,
-		BUFF_Charm = 23,
-		BUFF_Poison = 24,
-		BUFF_Suppression = 25,
-		BUFF_Blind = 26,
-		BUFF_Counter = 27,
-		BUFF_Currency = 21,
-		BUFF_Shred = 28,
-		BUFF_Flee = 29,
-		BUFF_Knockup = 30,
-		BUFF_Knockback = 31,
-		BUFF_Disarm = 32,
-		BUFF_Grounded = 33,
-		BUFF_Drowsy = 34,
-		BUFF_Asleep = 35,
-		BUFF_Obscured = 36,
-		BUFF_ClickproofToEnemies = 37,
-		BUFF_UnKillable = 38
 	};
 }

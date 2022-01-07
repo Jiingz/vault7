@@ -132,9 +132,6 @@
     <ClInclude Include="features\feature_interface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="game\game_objects\attackable_units\player.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="sdk\target_selector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -303,6 +300,24 @@
     <ClInclude Include="libs\config\config.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="sdk\prediction\health_prediction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\prediction\incoming_attack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="game\game_objects\structures\spell.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tests\test_run.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\controller.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\prediction\damage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="game\manager\manager.cpp">
@@ -380,9 +395,6 @@
     <ClCompile Include="features\orbwalker.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\game_objects\attackable_units\player.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sdk\target_selector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -447,6 +459,21 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="drawings\permashow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\prediction\incoming_attack.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\prediction\health_prediction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tests\test_run.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\controller.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\prediction\damage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

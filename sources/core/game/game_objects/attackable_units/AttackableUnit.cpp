@@ -30,6 +30,17 @@ float game::AttackableUnit::GetDistanceTo(AttackableUnit* unit)
 	return this->position.DistanceTo(unit->position);
 }
 
+SpellData* game::AttackableUnit::GetBasicAttack()
+{
+	typedef SpellData** (__thiscall* fnGetBasicAttack)(GameObject* target, unsigned slot);
+	auto ret = reinterpret_cast<fnGetBasicAttack>(DEFINE_RVA(Offsets::Functions::GetBasicAttack)
+		)(this, 0x41);
+	if (ret) {
+		return *ret;
+	}
+	return nullptr;
+}
+
 bool game::AttackableUnit::IsAlive()
 {
 	return this->dead % 2 == 0;

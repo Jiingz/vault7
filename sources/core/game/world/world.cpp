@@ -1,3 +1,4 @@
+#include <Windows.h>
 #include <core/game/world/world.h>
 #include <core/locator.h>
 
@@ -13,7 +14,7 @@ World::World()
 	this->buildings_ = ManagerTemplateProvider::GetBuildingManager();
 	this->shops_ = ManagerTemplateProvider::GetShopManager();
 
-	this->player_ = memory::Accessor::AccessModuleAddress<Player*>(Offsets::LocalPlayer);
+	this->player_ = memory::Accessor::AccessModuleAddress<Hero*>(Offsets::LocalPlayer);
 }
 
 ManagerTemplateAccessor<AttackableUnit> game::World::GetAttackableUnits() const
@@ -51,12 +52,12 @@ ManagerTemplateAccessor<GameObject> game::World::GetShops() const
 	return this->shops_;
 }
 
-Player* World::GetPlayer() const
+Hero* World::GetPlayer() const
 {
 	return this->player_;
 }
 
 bool game::World::WorldToScreen(Vector3* in, Vector2* out)
 {
-	return reinterpret_cast<bool(__cdecl*)(Vector3*, Vector2*)>((__int32)GetModuleHandle(NULL) + static_cast<int>(Offsets::Functions::WorldToScreen))(in, out);
+	return reinterpret_cast<bool(__cdecl*)(Vector3*, Vector2*)>((DWORD)GetModuleHandle(NULL) + static_cast<int>(Offsets::Functions::WorldToScreen))(in, out);
 }

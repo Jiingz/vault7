@@ -167,6 +167,11 @@
     <ClInclude Include="event\event_bus.h" />
     <ClInclude Include="features\feature_controller.h" />
     <ClInclude Include="features\feature_interface.h" />
+    <ClInclude Include="sdk\controller.h" />
+    <ClInclude Include="game\game_objects\structures\spell.h" />
+    <ClInclude Include="sdk\prediction\damage.h" />
+    <ClInclude Include="sdk\prediction\health_prediction.h" />
+    <ClInclude Include="sdk\prediction\incoming_attack.h" />
     <ClInclude Include="sdk\target_selector.h" />
     <ClInclude Include="features\humanizer.h" />
     <ClInclude Include="features\orbwalker.h" />
@@ -178,7 +183,6 @@
     <ClInclude Include="game\game_objects\attackable_units\inhibitor.h" />
     <ClInclude Include="game\game_objects\attackable_units\hero.h" />
     <ClInclude Include="game\game_objects\attackable_units\minion.h" />
-    <ClInclude Include="game\game_objects\attackable_units\player.h" />
     <ClInclude Include="game\game_objects\attackable_units\turret.h" />
     <ClInclude Include="game\game_objects\enums.h" />
     <ClInclude Include="game\game_objects\structures\ai_manager.h" />
@@ -248,6 +252,7 @@
     <ClInclude Include="libs\Zydis\Zydis\Utils.h" />
     <ClInclude Include="libs\Zydis\Zydis\Zydis.h" />
     <ClInclude Include="mouse.h" />
+    <ClInclude Include="tests\test_run.h" />
     <ClInclude Include="utilities.h" />
     <ClInclude Include="locator.h" />
     <ClInclude Include="game\game_objects\game_object.h" />
@@ -262,13 +267,16 @@
     <ClCompile Include="drawings\menu\menu.cpp" />
     <ClCompile Include="drawings\permashow.cpp" />
     <ClCompile Include="features\feature_controller.cpp" />
+    <ClCompile Include="sdk\controller.cpp" />
+    <ClCompile Include="sdk\prediction\damage.cpp" />
+    <ClCompile Include="sdk\prediction\health_prediction.cpp" />
+    <ClCompile Include="sdk\prediction\incoming_attack.cpp" />
     <ClCompile Include="sdk\target_selector.cpp" />
     <ClCompile Include="features\orbwalker.cpp" />
     <ClCompile Include="game\game_components\game_component.cpp" />
     <ClCompile Include="game\game_objects\attackable_units\AttackableUnit.cpp" />
     <ClCompile Include="game\game_objects\attackable_units\building.cpp" />
     <ClCompile Include="game\game_objects\attackable_units\inhibitor.cpp" />
-    <ClCompile Include="game\game_objects\attackable_units\player.cpp" />
     <ClCompile Include="game\game_objects\game_object.cpp" />
     <ClCompile Include="game\game_objects\attackable_units\hero.cpp" />
     <ClCompile Include="game\game_objects\attackable_units\minion.cpp" />
@@ -305,6 +313,7 @@
     <ClCompile Include="locator.cpp" />
     <ClCompile Include="game\manager\manager.cpp" />
     <ClCompile Include="game\game_objects\attackable_units\turret.cpp" />
+    <ClCompile Include="tests\test_run.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="libs\Zydis\Zydis\src\Generated\AccessedFlags.inc" />

@@ -6,7 +6,7 @@ namespace game
 	class Hero : public game::AttackableUnit
 	{
 	public:
-		bool ForceAttack();
+	
 	};
 
 

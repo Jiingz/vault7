@@ -15,6 +15,15 @@ int main()
 {
 	//Hooks GetCursorPos WINAPI function to spoof the mouse position. Mostly used for CastSpell.
 	//core::Locator::GetHookingService()->HookGetCursorPos();
+	//Initialize functions
+	core::Locator::GetFunctionAccessor()->GetAttackCastDelay.Initialize();
+	core::Locator::GetFunctionAccessor()->GetAttackDelay.Initialize();
+	core::Locator::GetFunctionAccessor()->GetbaseAttack.Initialize();
+	core::Locator::GetFunctionAccessor()->GetBaseDrawPos.Initialize();
+	core::Locator::GetFunctionAccessor()->NewCastSpell.Initialize();
+	core::Locator::GetFunctionAccessor()->NewIssueOrder.Initialize();
+	core::Locator::GetFunctionAccessor()->PrintChat.Initialize();
+	core::Locator::GetFunctionAccessor()->WorldToScreen.Initialize();
 
 	//Hook the present
 	core::Locator::GetHookingService()->HookPresent();

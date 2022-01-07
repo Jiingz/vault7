@@ -1,18 +1,12 @@
 #include <Windows.h>
 #include <core/game/game_objects/structures/buff.h>
-#include <core/game/Offsets.h>
 
 using namespace game;
-
-BYTE Buff::GetType()const noexcept
-{
-	return *(BYTE*)(this + Offsets::BuffManager::type);
-}
 
 bool Buff::IsAlive()const
 {
 	float time = *reinterpret_cast<float*>((DWORD)GetModuleHandle(NULL) + Offsets::GameTime);
-	return GetStartTime() < time && time < GetEndTime();
+	return this->start_time < time && time < this->end_time;
 }
 
 bool Buff::IsValid()const
@@ -20,16 +14,6 @@ bool Buff::IsValid()const
 	if (this == nullptr || (DWORD)this <= 0x1000)
 		return false;
 	return strcmp(GetName(), "nullptr") && GetCountAlt() > 0;
-}
-
-float Buff::GetStartTime()const noexcept
-{
-	return *(float*)(this + Offsets::BuffManager::start_time);
-}
-
-float Buff::GetEndTime()const noexcept
-{
-	return *(float*)(this + Offsets::BuffManager::end_time);
 }
 
 DWORD Buff::GetCountAlt()const noexcept

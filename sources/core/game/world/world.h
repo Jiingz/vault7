@@ -2,9 +2,9 @@
 #include <memory>
 
 #include <core/game/manager/manager.h>
-#include <core/game/game_objects/attackable_units/player.h>
 #include <core/game/Offsets.h>
 
+#define local_player core::Locator::GetWorld()->GetPlayer()
 
 namespace game
 {
@@ -21,7 +21,7 @@ namespace game
 		ManagerTemplateAccessor<Building> GetBuildings() const;
 		ManagerTemplateAccessor<GameObject> GetShops() const;
 
-		Player* GetPlayer() const;
+		Hero* GetPlayer() const;
 
 		bool WorldToScreen(Vector3* in, Vector2* out);
 
@@ -35,6 +35,6 @@ namespace game
 		ManagerTemplateAccessor<Building> buildings_;
 		ManagerTemplateAccessor<GameObject> shops_;
 
-		Player* player_;
+		Hero* player_;
 	};
 }

@@ -9,9 +9,9 @@ namespace game
 	public:
 		union
 		{
-		
+
 			DEFINE_MEMBER_N(Vector3 waypoint, Offsets::WayPoint);
-			DEFINE_MEMBER_N(Vector3 navmesh, Offsets::NavMesh);
+			DEFINE_MEMBER_N(void* navmesh, Offsets::NavMesh); //should point to NavMesh class. TODO
 			DEFINE_MEMBER_N(float moveSpeed, Offsets::MoveSpeed);
 			DEFINE_MEMBER_N(bool is_moving, Offsets::IsMoving);
 			DEFINE_MEMBER_N(int32_t passed_waypoint_count, Offsets::PassedWayPoints);

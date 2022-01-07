@@ -29,7 +29,7 @@ namespace Offsets
 		GetBoundingRadius = 0x123260, // 83 EC 08 56 8B F1 83 BE ? ? ? ? ? 74
 		BaseDrawPosition = 0x16FEE0, // E8 ? ? ? ? EB 07 8B 01 8B call GetBaseDrawPos()
 		IsNotWall = 0x9AF1F0,	  // E8 ? ? ? ? 83 C4 10 80 BE ? ? ? ? ? 74 0A
-		CompareObjectTypeFlags = 0x23A440, // E8 ? ? ? ? 84 C0 0F 84 ? ? ? ? 8B 87 ? ? ? ? 8D
+		CompareObjectTypeFlags = 0x12BE60, //51 56 57 8B F9 33 D2 0F B6 47 Inside function, just Decompile (F5)
 		//IsValidObject = E8 ? ? ? ? 84 C0 75 ? 5E 83 C4 ? C2 ? ?
 		onProcessSpell = 0x50AF40,				// 56 8B 74 24 08 8B 16 85
 		OnCreateObject = 0x27C740, //UNUSED		// 56 8B F1 80 7E 28 00 75

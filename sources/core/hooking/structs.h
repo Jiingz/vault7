@@ -1,6 +1,8 @@
 #pragma once
 #include <core/game/Offsets.h>
 #include <core/drawings/geometry/vector.h>
+#include <core/game/game_objects/structures/spell.h>
+#include <vector>
 
 class ActiveSpell
 {
@@ -27,4 +29,23 @@ public:
 		DEFINE_MEMBER_N(bool is_headshot_attack, Offsets::IsHeadshotAttack);
 		DEFINE_MEMBER_N(float mana_costs, Offsets::ManaCost);
 	};
+
+	SpellInfo* GetSpellInfo()
+	{
+		return *reinterpret_cast<SpellInfo**>(reinterpret_cast<ULONG>(this));
+	}
+
+	std::vector<short> GetTargetsIndexVector()
+	{
+		std::vector<short>targetsVector;
+		for (int i = 0; i < this->target_array_size; i++)
+			targetsVector.push_back(*reinterpret_cast<short*>(this->target_array_ptr + 0x10 * i));
+
+		return targetsVector;
+	}
+
+	float GetStartTime()
+	{
+		return end_time - cast_delay;
+	}
 };

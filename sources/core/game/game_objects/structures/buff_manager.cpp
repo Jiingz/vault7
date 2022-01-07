@@ -5,15 +5,15 @@ using namespace game;
 
 Buff* BuffManager::GetBuffEntryByName(const char* BuffName) const
 {
-	for (DWORD pBuffPtr = start; pBuffPtr != end; pBuffPtr += 0x8)
+	for (DWORD buff_ptr = start; buff_ptr != end; buff_ptr += 0x8)
 	{
-		Buff* pBuff = *(Buff**)pBuffPtr;
-		if (!pBuff->IsValid())
+		Buff* buff = *(Buff**)buff_ptr;
+		if (!buff->IsValid())
 			continue;
-		if (pBuff->IsAlive())
+		if (buff->IsAlive())
 		{
-			if (strcmp(pBuff->GetName(), BuffName) == 0)
-				return pBuff;
+			if (strcmp(buff->GetName(), BuffName) == 0)
+				return buff;
 		}
 	}
 	return nullptr;
@@ -21,6 +21,23 @@ Buff* BuffManager::GetBuffEntryByName(const char* BuffName) const
 
 Buff* BuffManager::GetBuffEntryByHash(buff_hash hash)
 {
+	for (DWORD buff_ptr = start; buff_ptr != end; buff_ptr += 0x8)
+	{
+		Buff* buff = *(Buff**)buff_ptr;
+		if (!buff->IsValid())
+			continue;
+		if (buff->IsAlive())
+		{
+			if (hash == buff->GetHash())
+				return buff;
+		}
+	}
+	return nullptr;
+}
+
+std::vector<Buff*> game::BuffManager::GetBuffEntries()
+{
+	std::vector<Buff*> buff_entries;
 	for (DWORD pBuffPtr = start; pBuffPtr != end; pBuffPtr += 0x8)
 	{
 		Buff* pBuff = *(Buff**)pBuffPtr;
@@ -28,9 +45,8 @@ Buff* BuffManager::GetBuffEntryByHash(buff_hash hash)
 			continue;
 		if (pBuff->IsAlive())
 		{
-			if (hash == pBuff->GetHash())
-				return pBuff;
+			buff_entries.push_back(pBuff);
 		}
 	}
-	return nullptr;
+	return buff_entries;
 }

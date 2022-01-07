@@ -32,7 +32,7 @@ namespace game
 			FunctionFastcall>>::type
 			>::type DefinedFunction;
 
-		Function()
+		void Initialize()
 		{
 			this->func_ = reinterpret_cast<DefinedFunction>(reinterpret_cast<DWORD>(GetModuleHandle(NULL)) + TOffset);
 		}
