@@ -44,3 +44,4 @@ I used a function which does clicks on given xy coordinates ingame. It's a inter
 and without the need of bypassing stupid checks.
 
 For spell casting hooking GetCursorPos and feeding your values you want to cast on is enough.
+You won't see the mouse moving or anything, it will look just like calling CastSpell.
